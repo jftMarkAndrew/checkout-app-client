@@ -1,11 +1,8 @@
 import "./App.css";
+import { CheckoutContainer } from "./components/CheckoutContainer";
 
 function App() {
-  return (
-    <>
-      <h1>Checkout App</h1>
-    </>
-  );
+  return <CheckoutContainer />;
 }
 
 export default App;
