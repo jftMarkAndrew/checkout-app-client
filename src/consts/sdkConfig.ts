@@ -13,7 +13,9 @@ export const cardConfig = {
   },
 };
 export const btnConfig = {
-  submitButton: {
-    selector: "#submit-payment",
+  additionalFields: {
+    submitButton: {
+      selector: "#submit-payment",
+    },
   },
 };
