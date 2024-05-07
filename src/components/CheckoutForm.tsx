@@ -34,28 +34,40 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   }, [sessionToken]);
 
   return (
-    <form id="payment-form">
-      <div className="payment-field">
-        <label className="payment-field--cardholder-label">
-          Cardholder Name
-          <div className="secure-field--container" id="cardholder"></div>
-        </label>
+    <div className="container">
+      <div className="content">
+        <div className="main-card"></div>
       </div>
-      <div className="payment-field">
-        <label className="payment-field--card-label">
-          Card Details
-          <div id="card"></div>
-        </label>
+      <div className="content">
+        <h3>Payment Details</h3>
+        <div className="container">
+          <form id="payment-form">
+            <div className="payment-field">
+              <label className="payment-field--cardholder-label">
+                Cardholder Name
+                <div className="secure-field--container" id="cardholder"></div>
+              </label>
+            </div>
+            <div className="payment-field">
+              <label className="payment-field--card-label">
+                Card Details
+                <div id="card"></div>
+              </label>
+            </div>
+            <div className="payment-checkbox">
+              <input type="checkbox" id="save-card" name="save-card" />
+              <label htmlFor="save-card">
+                Save my credit card details securely for future purchases
+              </label>
+            </div>
+            <div className="btn-container">
+              <button type="button" id="submit-payment" className="btn-pay">
+                Pay now
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="payment-checkbox">
-        <input type="checkbox" id="save-card" name="save-card" />
-        <label htmlFor="save-card">
-          Save my credit card details securely for future purchases
-        </label>
-      </div>
-      <button type="button" id="submit-payment">
-        Pay now
-      </button>
-    </form>
+    </div>
   );
 };
