@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { cardConfig, btnConfig } from "../consts/sdkConfig";
 
 declare global {
   interface Window {
@@ -21,28 +22,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
         if (window.Unipaas && !hasInitialized.current) {
           const unipaas = new window.Unipaas();
           unipaas.usePolyfills();
-          unipaas.initTokenize(
-            sessionToken,
-            {
-              cardDetails: {
-                selector: "#card",
-                placeholder: {
-                  cardNumber: "1234 5678 9012 3456",
-                  cvv: "CVV",
-                  expiry: "MM/YY",
-                },
-              },
-              cardHolder: {
-                selector: "#cardholder",
-                placeholder: "A. Einstein",
-              },
-            },
-            {
-              submitButton: {
-                selector: "#submit-payment",
-              },
-            }
-          );
+          unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
           hasInitialized.current = true;
         }
       };
