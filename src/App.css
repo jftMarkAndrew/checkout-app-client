@@ -61,6 +61,20 @@ body {
   box-shadow: #16161632 4px 4px 4px;
 }
 
+.btn-disabled {
+  background-color: #16161650;
+  border: 2px solid #16161600;
+  border-radius: 6px;
+  box-shadow: #16161632 4px 4px 8px;
+  color: #f2f8fc;
+  cursor: default;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  padding: 16px 24px;
+  transition: all 0.25 ease;
+}
+
 .payment-form {
   max-width: 500px;
   min-width: 325px;

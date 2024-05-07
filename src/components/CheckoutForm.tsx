@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 
 declare global {
@@ -14,6 +14,7 @@ interface CheckoutFormProps {
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const isInitialized = useRef(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
     if (!isInitialized.current) {
@@ -62,7 +63,12 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
               </label>
             </div>
             <div className="btn-container">
-              <button type="button" id="submit-payment" className="btn-pay">
+              <button
+                type="button"
+                id="submit-payment"
+                className={isButtonDisabled ? "btn-disabled" : "btn-pay"}
+                disabled={isButtonDisabled}
+              >
                 Pay now
               </button>
             </div>
