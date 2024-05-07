@@ -13,18 +13,18 @@ interface CheckoutFormProps {
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
-  const hasInitialized = useRef(false);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    if (!hasInitialized.current) {
+    if (!isInitialized.current) {
       const script = document.createElement("script");
       script.src = "https://cdn.unipaas.com/unipaas.sdk.js";
       script.onload = () => {
-        if (window.Unipaas && !hasInitialized.current) {
+        if (window.Unipaas && !isInitialized.current) {
           const unipaas = new window.Unipaas();
           unipaas.usePolyfills();
           unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
-          hasInitialized.current = true;
+          isInitialized.current = true;
         }
       };
       document.body.appendChild(script);
