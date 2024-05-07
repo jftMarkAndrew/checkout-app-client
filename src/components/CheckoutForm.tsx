@@ -25,6 +25,12 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
           const unipaas = new window.Unipaas();
           unipaas.usePolyfills();
           unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
+
+          unipaas.on("onSuccess", handleSuccess);
+          unipaas.on("onError", handleError);
+          unipaas.on("onSubmission", handleSubmission);
+          unipaas.on("OnTokenSuccess", handleTokenSuccess);
+
           isInitialized.current = true;
         }
       };
@@ -34,6 +40,23 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
       };
     }
   }, [sessionToken]);
+
+  const handleSuccess = (data: unknown) => {
+    console.log("Payment successful:", data);
+    setIsButtonDisabled(true);
+  };
+
+  const handleError = (error: unknown) => {
+    console.log("Payment error:", error);
+  };
+
+  const handleSubmission = () => {
+    console.log("Form submission detected");
+  };
+
+  const handleTokenSuccess = (token: unknown) => {
+    console.log("Token received:", token);
+  };
 
   return (
     <div className="container">
