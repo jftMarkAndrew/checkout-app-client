@@ -18,4 +18,5 @@ export const btnConfig = {
       selector: "#submit-payment",
     },
   },
+  mode: "test",
 };
