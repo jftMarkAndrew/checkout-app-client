@@ -1,9 +1,17 @@
 import { ItemComponent } from "./ItemComponent";
 
-export const StoreComponent = () => {
+interface StoreComponentProps {
+  imageUrls: string[];
+}
+
+export const StoreComponent: React.FC<StoreComponentProps> = ({
+  imageUrls,
+}) => {
   return (
     <div className="store-container">
-      <ItemComponent />
+      {imageUrls.map((url, index) => (
+        <ItemComponent key={index} imageUrl={url} />
+      ))}
     </div>
   );
 };

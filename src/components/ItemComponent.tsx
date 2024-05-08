@@ -1,4 +1,8 @@
-export const ItemComponent = () => {
+interface ItemComponentProps {
+  imageUrl: string;
+}
+
+export const ItemComponent: React.FC<ItemComponentProps> = ({ imageUrl }) => {
   return (
     <div className="item-grid">
       <svg
@@ -16,7 +20,7 @@ export const ItemComponent = () => {
           </clipPath>
         </defs>
         <image
-          href="/public/img/01461f32-ba2b-45e8-af80-21b37fddb418.png"
+          href={imageUrl}
           width="100%"
           height="100%"
           clipPath="url(#clipShape)"
