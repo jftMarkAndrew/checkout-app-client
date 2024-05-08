@@ -14,7 +14,7 @@ interface CheckoutFormProps {
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const isInitialized = useRef(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isSuccessfulPayment, setSuccessfulPayment] = useState(false);
 
   const handleTokenSuccess = (token: unknown) => {
     console.log("Token received:", token);
@@ -26,7 +26,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   const handleSuccess = (data: unknown) => {
     console.log("Payment successful. DATA: ", data);
-    setIsButtonDisabled(true);
+    setSuccessfulPayment(true);
   };
 
   const handleError = (error: unknown) => {
@@ -97,8 +97,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
               <button
                 type="button"
                 id="submit-payment"
-                className={isButtonDisabled ? "btn-disabled" : "btn-pay"}
-                disabled={isButtonDisabled}
+                className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
+                disabled={isSuccessfulPayment}
               >
                 Pay now
               </button>
