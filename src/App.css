@@ -524,6 +524,7 @@ input[type="checkbox"]:checked + label {
 .item-grid-svg {
   position: absolute;
   z-index: 1;
+  filter: drop-shadow(#16161640 4px 4px 16px);
 }
 
 .item-grid-bottom-right-corner {
