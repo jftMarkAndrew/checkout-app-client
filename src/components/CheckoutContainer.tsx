@@ -5,12 +5,15 @@ import { CartItem } from "./ContainerComponent";
 
 interface CheckoutContainerProps {
   cart: CartItem[];
+  email: string;
 }
 
 export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   cart,
+  email,
 }) => {
   console.log(cart);
+  console.log(email);
   const [sessionToken, setSessionToken] = useState("");
 
   useEffect(() => {

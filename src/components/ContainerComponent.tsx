@@ -15,8 +15,9 @@ export type CartItem = {
 const products: Product[] = mockProducts;
 
 export const ContainerComponent = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [email, setEmail] = useState("");
 
   const handleAddToCart = (product: Product) => {
     setCart((prevCart) => {
@@ -32,6 +33,10 @@ export const ContainerComponent = () => {
       }
       return [...prevCart, { product, quantity: 1 }];
     });
+  };
+
+  const handleEmailChange = (newEmail: string) => {
+    setEmail(newEmail);
   };
 
   const proceedToCheckout = () => {
@@ -50,9 +55,14 @@ export const ContainerComponent = () => {
         />
       )}
       {!showCheckout && cart.length > 0 && (
-        <DetailsComponent cart={cart} onContinue={proceedToCheckout} />
+        <DetailsComponent
+          cart={cart}
+          email={email}
+          onEmailChange={handleEmailChange}
+          onContinue={proceedToCheckout}
+        />
       )}
-      {showCheckout && <CheckoutContainer cart={cart} />}
+      {showCheckout && <CheckoutContainer cart={cart} email={email} />}
       <ResultComponent />
       <TrackComponent />
     </>
