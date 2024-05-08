@@ -1,8 +1,10 @@
 import "./App.css";
-import { CheckoutContainer } from "./components/CheckoutContainer";
+import { ContainerComponent } from "./components/ContainerComponent";
 
-function App() {
-  return <CheckoutContainer />;
+export function App() {
+  return (
+    <>
+      <ContainerComponent />
+    </>
+  );
 }
-
-export default App;
