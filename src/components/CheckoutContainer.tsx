@@ -15,7 +15,9 @@ export const CheckoutContainer: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.sessionToken) {
-          setSessionToken(data.sessionToken);
+          setTimeout(() => {
+            setSessionToken(data.sessionToken);
+          }, 250);
         } else {
           console.error("Failed to retrieve session token");
         }
