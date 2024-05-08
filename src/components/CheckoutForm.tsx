@@ -61,7 +61,15 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   return (
     <div className="checkout-container">
       <div className="checkout-content">
-        <div className="checkout-design-card"></div>
+        <div className="checkout-design-card">
+          <img
+            src="/src/assets/icons/fav_icon_logo_unipaas.svg"
+            width={256}
+            height={256}
+            alt="UNIPaaS"
+            className="checkout-unipaas"
+          />
+        </div>
       </div>
       <div className="checkout-content">
         <h3 className="big-screen-only">Payment Details</h3>

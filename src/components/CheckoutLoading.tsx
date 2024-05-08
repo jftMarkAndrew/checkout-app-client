@@ -1,10 +1,13 @@
 export const CheckoutLoading = () => {
   return (
-    <div className="spinner">
-      Loading
-      <div className="spinner-sector spinner-sector-red"></div>
-      <div className="spinner-sector spinner-sector-blue"></div>
-      <div className="spinner-sector spinner-sector-green"></div>
+    <div className="chekout-container">
+      <img
+        src="/src/assets/icons/fav_icon_logo_unipaas.svg"
+        width={216}
+        height={216}
+        alt="UNIPaaS"
+        className="checkout-unipaas grow"
+      />
     </div>
   );
 };

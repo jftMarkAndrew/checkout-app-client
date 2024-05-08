@@ -43,7 +43,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
       {sessionToken ? (
         <CheckoutForm sessionToken={sessionToken} />
       ) : (
-        <div className="container content">
+        <div className="checkout-container checkout-content">
           <CheckoutLoading />
         </div>
       )}
