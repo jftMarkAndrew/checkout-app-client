@@ -12,7 +12,7 @@ export const ItemComponent = () => {
           transform="translate(-780 -360)"
         />
       </svg>
-      <div className="item-bottom-right-corner"></div>
+      <div className="item-grid-bottom-right-corner"></div>
     </div>
   );
 };

@@ -124,6 +124,8 @@ body {
   transition: all 0.25 ease;
 }
 
+/* for SDK functionality */
+
 .payment-form {
   max-width: 500px;
   min-width: 325px;
@@ -497,8 +499,13 @@ input[type="checkbox"]:checked + label {
   z-index: 1;
 }
 
-.logo-grid-empty {
+.logo-grid-bottom-right-corner {
   position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: right;
+  justify-content: end;
   width: 6em;
   z-index: 1;
 }
@@ -519,7 +526,7 @@ input[type="checkbox"]:checked + label {
   z-index: 1;
 }
 
-.item-bottom-right-corner {
+.item-grid-bottom-right-corner {
   grid-row: 7 / span 2;
   grid-column: 7 / span 2;
   background-color: #f4f3ef;

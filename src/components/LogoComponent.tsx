@@ -29,8 +29,8 @@ export const LogoComponent = () => {
             Mark Andrew
           </a>
         </p>
-        <div className="logo-grid-empty"></div>
       </div>
+      <div className="logo-grid-bottom-right-corner"></div>
     </div>
   );
 };
