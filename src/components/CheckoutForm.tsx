@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 
 declare global {
@@ -16,6 +16,24 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const isInitialized = useRef(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
+  const handleTokenSuccess = (token: unknown) => {
+    console.log("Token received:", token);
+  };
+
+  const handleSubmission = (data: unknown) => {
+    console.log("Form submission detected", data);
+  };
+
+  const handleSuccess = (data: unknown) => {
+    console.log("Payment successful. DATA: ", data);
+    /* console.log(data.consumerId); */
+    setIsButtonDisabled(true);
+  };
+
+  const handleError = (error: unknown) => {
+    console.log("Payment error:", error);
+  };
+
   useEffect(() => {
     if (!isInitialized.current) {
       const script = document.createElement("script");
@@ -26,10 +44,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
           unipaas.usePolyfills();
           unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
 
+          unipaas.on("OnTokenSuccess", handleTokenSuccess);
+          unipaas.on("onSubmission", handleSubmission);
           unipaas.on("onSuccess", handleSuccess);
           unipaas.on("onError", handleError);
-          unipaas.on("onSubmission", handleSubmission);
-          unipaas.on("OnTokenSuccess", handleTokenSuccess);
 
           isInitialized.current = true;
         }
@@ -40,23 +58,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
       };
     }
   }, [sessionToken]);
-
-  const handleSuccess = (data: unknown) => {
-    console.log("Payment successful:", data);
-    setIsButtonDisabled(true);
-  };
-
-  const handleError = (error: unknown) => {
-    console.log("Payment error:", error);
-  };
-
-  const handleSubmission = () => {
-    console.log("Form submission detected");
-  };
-
-  const handleTokenSuccess = (token: unknown) => {
-    console.log("Token received:", token);
-  };
 
   return (
     <div className="container">
