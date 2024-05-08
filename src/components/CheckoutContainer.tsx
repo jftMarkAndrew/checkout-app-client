@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
+import { CheckoutLoading } from "./CheckoutLoading";
 
 export const CheckoutContainer: React.FC = () => {
   const [sessionToken, setSessionToken] = useState("");
@@ -29,7 +30,9 @@ export const CheckoutContainer: React.FC = () => {
       {sessionToken ? (
         <CheckoutForm sessionToken={sessionToken} />
       ) : (
-        <p>Loading...</p>
+        <div className="container content">
+          <CheckoutLoading />
+        </div>
       )}
     </>
   );
