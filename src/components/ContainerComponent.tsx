@@ -42,12 +42,14 @@ export const ContainerComponent = () => {
     <>
       {/* TODO BASCET (link to CheckoutContainer), TRACK ORDER (link to TrackComponent), LIGHT/DARK MODE, PREVIOUS/NEXT BTN */}
       <LogoComponent />
-      <StoreComponent
-        products={products}
-        cart={cart}
-        onAddToCart={handleAddToCart}
-      />
-      {cart.length > 0 && (
+      {!showCheckout && (
+        <StoreComponent
+          products={products}
+          cart={cart}
+          onAddToCart={handleAddToCart}
+        />
+      )}
+      {!showCheckout && cart.length > 0 && (
         <DetailsComponent cart={cart} onContinue={proceedToCheckout} />
       )}
       {showCheckout && <CheckoutContainer cart={cart} />}
