@@ -18,7 +18,7 @@ export const LogoComponent = () => {
         </defs>
         <image
           href="/img/minimal-923194_1920.jpg"
-          width="1080"
+          width="100%"
           x="0"
           y="-744"
           clip-path="url(#clip)"
