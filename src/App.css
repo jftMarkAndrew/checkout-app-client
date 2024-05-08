@@ -622,7 +622,7 @@ input[type="checkbox"]:checked + label {
 /* screen sizes */
 
 .small-screen-only {
-  visibility: hidden;
+  display: none;
 }
 
 @media screen and (min-width: 3840px) {
@@ -663,16 +663,16 @@ input[type="checkbox"]:checked + label {
     }
 
     p {
-      visibility: hidden;
+      display: none;
     }
   }
 
   .big-screen-only {
-    visibility: hidden;
+    display: none;
   }
 
   .small-screen-only {
-    visibility: visible;
+    display: block;
   }
 }
 
