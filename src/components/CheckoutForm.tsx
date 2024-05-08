@@ -26,7 +26,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   const handleSuccess = (data: unknown) => {
     console.log("Payment successful. DATA: ", data);
-    /* console.log(data.consumerId); */
     setIsButtonDisabled(true);
   };
 
