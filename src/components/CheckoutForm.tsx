@@ -64,7 +64,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
         <div className="main-card"></div>
       </div>
       <div className="content">
-        <h3>Payment Details</h3>
+        <h3 className="big-screen-only">Payment Details</h3>
         <div className="container">
           <form id="payment-form">
             <div className="payment-field">
