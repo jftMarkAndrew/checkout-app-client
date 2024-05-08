@@ -1,24 +1,22 @@
 // StoreComponent.tsx
 import React from "react";
 import { ItemComponent } from "./ItemComponent";
-import { Product } from "./ContainerComponent";
+import { Product } from "../consts/mockProducts";
 
-// Assuming this is the type for products in the cart
 type CartItem = {
-  product: Product; // Assuming Product type is defined somewhere as shown earlier
+  product: Product;
   quantity: number;
 };
 
-// Extending StoreComponentProps to include 'cart'
 interface StoreComponentProps {
   products: Product[];
-  cart: CartItem[];  // This allows StoreComponent to use cart data
+  cart: CartItem[];
   onAddToCart: (product: Product) => void;
 }
 
 export const StoreComponent: React.FC<StoreComponentProps> = ({
   products,
-  cart, // Now cart is part of the props and can be used within this component
+  cart,
   onAddToCart,
 }) => {
   return (
