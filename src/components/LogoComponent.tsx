@@ -21,7 +21,7 @@ export const LogoComponent = () => {
           width="100%"
           x="0"
           y="-744"
-          clip-path="url(#clip)"
+          clipPath="url(#clip)"
           preserveAspectRatio="xMidYMid slice"
         />
       </svg>
