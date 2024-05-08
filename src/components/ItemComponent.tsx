@@ -4,26 +4,25 @@ interface ItemComponentProps {
   imageUrl: string;
   productName: string;
   productPriceGBP: string;
+  quantity: number;
+  onAddItem: () => void;
 }
 
 export const ItemComponent: React.FC<ItemComponentProps> = ({
   imageUrl,
   productName,
   productPriceGBP,
+  quantity,
+  onAddItem,
 }) => {
   const [hover, setHover] = useState(false);
-  const [addItem, setAddItem] = useState(0);
-
-  const handleAddItem = () => {
-    setAddItem(addItem + 1);
-  };
 
   return (
     <div
       className="item-grid"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={handleAddItem}
+      onClick={onAddItem}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +79,8 @@ export const ItemComponent: React.FC<ItemComponentProps> = ({
         }
       </svg>
       <div className="item-grid-bottom-right-corner text-shadow">
-        {addItem > 0 && <p className="multiplier">x</p>}
-        <h1>{addItem > 0 ? addItem : ""}</h1>
+        {quantity > 0 && <p className="multiplier">x</p>}
+        <h1>{quantity > 0 ? quantity : ""}</h1>
       </div>
     </div>
   );

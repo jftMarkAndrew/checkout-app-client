@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutLoading } from "./CheckoutLoading";
+import { CartItem } from "./ContainerComponent";
 
-export const CheckoutContainer: React.FC = () => {
+interface CheckoutContainerProps {
+  cart: CartItem[];
+}
+
+export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
+  cart,
+}) => {
+  console.log(cart);
   const [sessionToken, setSessionToken] = useState("");
 
   useEffect(() => {
