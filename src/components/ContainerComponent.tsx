@@ -20,11 +20,35 @@ export const ContainerComponent = () => {
     "/img/d752323b-b289-4ab2-bed6-cc5cd58252f1.png",
     "/img/fb00c202-b690-4ab5-9df1-83cb190606f5.png",
   ];
+
+  const productNames = [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve",
+  ];
+
+  const productPricesGBP = [
+    50, 100, 150, 75, 225, 300, 275, 125, 25, 75, 125, 1000,
+  ];
+
   return (
     <>
       {/* TODO LOGO, NAME, BASCET (link to CheckoutContainer), TRACK ORDER (link to TrackComponent), LIGHT/DARK MODE, PREVIOUS/NEXT BTN */}
       <LogoComponent />
-      <StoreComponent imageUrls={imageUrls} />
+      <StoreComponent
+        imageUrls={imageUrls}
+        productNames={productNames}
+        productPricesGBP={productPricesGBP}
+      />
       <CheckoutContainer />
       <ResultComponent />
       <TrackComponent />

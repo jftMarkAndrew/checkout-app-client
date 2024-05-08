@@ -1,10 +1,30 @@
+import { useState } from "react";
+
 interface ItemComponentProps {
   imageUrl: string;
+  productName: string;
+  productPriceGBP: string;
 }
 
-export const ItemComponent: React.FC<ItemComponentProps> = ({ imageUrl }) => {
+export const ItemComponent: React.FC<ItemComponentProps> = ({
+  imageUrl,
+  productName,
+  productPriceGBP,
+}) => {
+  const [hover, setHover] = useState(false);
+  const [addItem, setAddItem] = useState(0);
+
+  const handleAddItem = () => {
+    setAddItem(addItem + 1);
+  };
+
   return (
-    <div className="item-grid">
+    <div
+      className="item-grid"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={handleAddItem}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 360 360"
@@ -26,8 +46,43 @@ export const ItemComponent: React.FC<ItemComponentProps> = ({ imageUrl }) => {
           clipPath="url(#clipShape)"
           preserveAspectRatio="xMidYMid slice"
         />
+        {hover && (
+          <g clipPath="url(#clipShape)" className="big-screen-only">
+            <rect width="100%" height="100%" fill="#16161640" />
+            <text
+              x="50%"
+              y="50%"
+              fill="#f4f3ef"
+              fontSize="32"
+              dy=".3em"
+              textAnchor="middle"
+              className="text-shadow"
+            >
+              {productName} - £{productPriceGBP}
+            </text>
+          </g>
+        )}
+        {
+          <g clipPath="url(#clipShape)" className="small-screen-only">
+            <rect width="100%" height="100%" fill="#16161616" />
+            <text
+              x="50%"
+              y="66%"
+              fill="#f4f3ef"
+              fontSize="32"
+              dy=".3em"
+              textAnchor="middle"
+              className="text-shadow"
+            >
+              {productName} - £{productPriceGBP}
+            </text>
+          </g>
+        }
       </svg>
-      <div className="item-grid-bottom-right-corner"></div>
+      <div className="item-grid-bottom-right-corner text-shadow">
+        {addItem > 0 && <p className="multiplier">x</p>}
+        <h1>{addItem > 0 ? addItem : ""}</h1>
+      </div>
     </div>
   );
 };
