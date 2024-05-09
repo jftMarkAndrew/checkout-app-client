@@ -7,9 +7,9 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div>
-        <nav>
+        {/* <nav>
           <Link to="/">Store</Link> | <Link to="/tracking">Orders</Link>
-        </nav>
+        </nav> */}
         <Routes>
           <Route path="/" element={<ContainerComponent />} />
           <Route path="/tracking" element={<TrackComponent />} />
