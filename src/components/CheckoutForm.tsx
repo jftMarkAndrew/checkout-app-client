@@ -38,7 +38,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   };
 
   const handleError = (error: OrderError) => {
-    console.log("Payment error:", error);
     setErrorMsg(error.processor.processorDescription);
     setShowError(true);
 
