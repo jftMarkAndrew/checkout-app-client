@@ -1,4 +1,5 @@
 import { CartItem } from "./ContainerComponent";
+import validator from "validator";
 
 interface DetailsComponentProps {
   cart: CartItem[];
@@ -18,8 +19,8 @@ export const DetailsComponent: React.FC<DetailsComponentProps> = ({
     0
   );
 
-  const isValidEmail = (email: string) => {
-    return /\S+@\S+\.\S+/.test(email);
+  const isValidEmail = (email: string): boolean => {
+    return validator.isEmail(email);
   };
 
   return (
