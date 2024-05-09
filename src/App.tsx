@@ -13,6 +13,7 @@ export const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<ContainerComponent />} />
           <Route path="/tracking" element={<TrackComponent />} />
+          <Route path="/tracking/:orderId" element={<TrackComponent />} />
         </Routes>
       </div>
     </BrowserRouter>

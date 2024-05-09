@@ -1,11 +1,21 @@
+import { useParams } from "react-router-dom";
 import { LogoComponent } from "./LogoComponent";
 
 export const TrackComponent = () => {
+  const { orderId } = useParams();
+
   return (
     <div>
       <LogoComponent />
-      <h1>Tracking Page</h1>
-      <p>Here you can track your orders and their status.</p>
+      <div className="tracking-container">
+        <h1>Where is my order?</h1>
+        <p>
+          You can check the status of your purchase using tracking number you
+          received after the successful payment.
+        </p>
+        {orderId && <div>Tracking Order ID: {orderId}</div>}
+      </div>
+      {orderId && <div className="tracking-table">table with result</div>}
     </div>
   );
 };
