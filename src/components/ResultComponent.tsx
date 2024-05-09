@@ -19,7 +19,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
             You can track it using ID on the dedicated page.
           </p>
           <p className="text-shadow">
-            <Link to={`/tracking/${orderId}`}>Check it now!</Link>
+            <Link to={`/tracking/${orderId}`}>Check it now!</Link> or save it
+            for later: <strong>{orderId}</strong>
           </p>
         </div>
       </div>
