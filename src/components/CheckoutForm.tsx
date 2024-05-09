@@ -44,7 +44,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
       ) {
         setReadyForSDK(true);
       } else {
-        setTimeout(checkElements, 100);
+        setTimeout(checkElements, 250);
       }
     };
     checkElements();
