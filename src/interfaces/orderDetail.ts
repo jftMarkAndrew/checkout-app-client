@@ -76,7 +76,7 @@ export interface Transaction {
   processorId: string;
 }
 
-export interface OrderDetails {
+export interface OrderDetail {
   authorizationId: string;
   authorizationStatus: string;
   merchantId: string;
