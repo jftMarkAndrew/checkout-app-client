@@ -2,7 +2,6 @@ import { useState } from "react";
 import { LogoComponent } from "./LogoComponent";
 import { StoreComponent } from "./StoreComponent";
 import { CheckoutContainer } from "./CheckoutContainer";
-import { TrackComponent } from "./TrackComponent";
 import { DetailsComponent } from "./DetailsComponent";
 import { Product, mockProducts } from "../consts/mockProducts";
 
@@ -62,7 +61,6 @@ export const ContainerComponent = () => {
         />
       )}
       {showCheckout && <CheckoutContainer cart={cart} email={email} />}
-      <TrackComponent />
     </>
   );
 };
