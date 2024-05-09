@@ -566,16 +566,6 @@ input[type="checkbox"]:checked + label {
   transition: all 0.15s ease;
 }
 
-.track-order-input {
-  margin-right: 1em;
-  padding: 0 0 0 2em;
-  width: 15em;
-  height: calc(3em - 2px);
-  border: 1px solid #161616;
-  border-radius: 3px;
-  filter: drop-shadow(#16161624 0.5em 0.5em 0);
-}
-
 .btn-pay:hover {
   width: 12em;
   height: 3em;
@@ -594,6 +584,37 @@ input[type="checkbox"]:checked + label {
   height: 3em;
   filter: drop-shadow(#16161624 0.5em 0.5em 0);
   transition: all 0.15s ease;
+}
+
+.tracking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.track-order-input {
+  margin-right: 1em;
+  padding: 0 0 0 2em;
+  width: 15em;
+  height: calc(3em - 2px);
+  border: 1px solid #161616;
+  border-radius: 3px;
+  filter: drop-shadow(#16161624 0.5em 0.5em 0);
+}
+
+.track-table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+
+  td {
+    width: 15em;
+  }
+
+  th {
+    width: 21em;
+  }
 }
 
 /* screen sizes */
