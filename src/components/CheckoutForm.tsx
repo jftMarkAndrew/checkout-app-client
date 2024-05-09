@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 import { ResultComponent } from "./ResultComponent";
+import { ErrorMessageComponent } from "./ErrorMessageComponent";
 
 declare global {
   interface Window {
@@ -18,6 +19,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const [isReadyForSDK, setReadyForSDK] = useState(false);
   const [isSuccessfulPayment, setSuccessfulPayment] = useState(false);
   const [isOrderId, setOrderId] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const handleTokenSuccess = (token: unknown) => {
     console.log("Token received:", token);
@@ -34,6 +36,13 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   const handleError = (error: unknown) => {
     console.log("Payment error:", error);
+    setShowError(true);
+
+    const timer = setTimeout(() => {
+      setShowError(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
   };
 
   useEffect(() => {
@@ -44,7 +53,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
       ) {
         setReadyForSDK(true);
       } else {
-        setTimeout(checkElements, 250);
+        setTimeout(checkElements, 1000);
       }
     };
     checkElements();
@@ -125,6 +134,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                 </button>
               </div>
             </form>
+          </div>
+          <div className="error-container">
+            {showError && <ErrorMessageComponent />}
           </div>
         </div>
       )}
