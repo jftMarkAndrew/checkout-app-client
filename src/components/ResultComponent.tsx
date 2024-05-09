@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
-const orderId = "663c4ff3cc59026bc79bcee9";
+interface ResultComponentProps {
+  orderId: string;
+}
 
-export const ResultComponent = () => {
+export const ResultComponent: React.FC<ResultComponentProps> = ({
+  orderId,
+}) => {
   return (
     <div className="checkout-content">
       <h3 className="big-screen-only">Payment Details</h3>

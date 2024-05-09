@@ -15,7 +15,9 @@ interface CheckoutFormProps {
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const isInitialized = useRef(false);
+  const [isReadyForSDK, setReadyForSDK] = useState(false);
   const [isSuccessfulPayment, setSuccessfulPayment] = useState(false);
+  const [isOrderId, setOrderId] = useState("");
 
   const handleTokenSuccess = (token: unknown) => {
     console.log("Token received:", token);
@@ -25,8 +27,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
     console.log("Form submission detected", data);
   };
 
-  const handleSuccess = (data: unknown) => {
-    console.log("Payment successful. AuthID: ", data.authorizationId);
+  const handleSuccess = (data: any) => {
+    setOrderId(data.authorizationId);
     setSuccessfulPayment(true);
   };
 
@@ -35,11 +37,25 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   };
 
   useEffect(() => {
-    if (!isInitialized.current) {
+    const checkElements = () => {
+      if (
+        document.getElementById("cardholder") &&
+        document.getElementById("card")
+      ) {
+        setReadyForSDK(true);
+      } else {
+        setTimeout(checkElements, 100);
+      }
+    };
+    checkElements();
+  }, []);
+
+  useEffect(() => {
+    if (isReadyForSDK && !isInitialized.current) {
       const script = document.createElement("script");
       script.src = "https://cdn.unipaas.com/unipaas.sdk.js";
       script.onload = () => {
-        if (window.Unipaas && !isInitialized.current) {
+        if (window.Unipaas) {
           const unipaas = new window.Unipaas();
           unipaas.usePolyfills();
           unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
@@ -57,7 +73,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
         document.body.removeChild(script);
       };
     }
-  }, [sessionToken]);
+  }, [sessionToken, isReadyForSDK]);
 
   return (
     <div className="checkout-container">
@@ -112,7 +128,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
           </div>
         </div>
       )}
-      {isSuccessfulPayment && <ResultComponent />}
+      {isSuccessfulPayment && <ResultComponent orderId={isOrderId} />}
     </div>
   );
 };
