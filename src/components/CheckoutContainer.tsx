@@ -17,25 +17,35 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   const [sessionToken, setSessionToken] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/checkout/session-token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.sessionToken) {
-          setTimeout(() => {
-            setSessionToken(data.sessionToken);
-          }, 250);
-        } else {
-          console.error("Failed to retrieve session token");
-        }
+    const postData = {
+      amount: 250,
+      currency: "USD",
+      country: "GB",
+      email: "jftmain@gmail.com",
+    };
+
+    setTimeout(() => {
+      fetch("http://localhost:3000/checkout/session-token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
       })
-      .catch((error) => {
-        console.error("Error fetching session token:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.sessionToken) {
+            setTimeout(() => {
+              setSessionToken(data.sessionToken);
+            }, 250);
+          } else {
+            console.error("Failed to retrieve session token");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching session token:", error);
+        });
+    }, 250);
   }, []);
 
   return (
