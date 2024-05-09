@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
+import { ResultComponent } from "./ResultComponent";
 
 declare global {
   interface Window {
@@ -71,41 +72,47 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
           />
         </div>
       </div>
-      <div className="checkout-content">
-        <h3 className="big-screen-only">Payment Details</h3>
-        <div className="checkout-container">
-          <form id="payment-form">
-            <div className="payment-field">
-              <label className="payment-field--cardholder-label">
-                Cardholder Name
-                <div className="secure-field--container" id="cardholder"></div>
-              </label>
-            </div>
-            <div className="payment-field">
-              <label className="payment-field--card-label">
-                Card Details
-                <div id="card"></div>
-              </label>
-            </div>
-            <div className="payment-checkbox">
-              <input type="checkbox" id="save-card" name="save-card" />
-              <label htmlFor="save-card">
-                Save my credit card details securely for future purchases
-              </label>
-            </div>
-            <div className="btn-container">
-              <button
-                type="button"
-                id="submit-payment"
-                className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
-                disabled={isSuccessfulPayment}
-              >
-                Pay now
-              </button>
-            </div>
-          </form>
+      {!isSuccessfulPayment && (
+        <div className="checkout-content">
+          <h3 className="big-screen-only">Payment Details</h3>
+          <div className="checkout-container">
+            <form id="payment-form">
+              <div className="payment-field">
+                <label className="payment-field--cardholder-label">
+                  Cardholder Name
+                  <div
+                    className="secure-field--container"
+                    id="cardholder"
+                  ></div>
+                </label>
+              </div>
+              <div className="payment-field">
+                <label className="payment-field--card-label">
+                  Card Details
+                  <div id="card"></div>
+                </label>
+              </div>
+              <div className="payment-checkbox">
+                <input type="checkbox" id="save-card" name="save-card" />
+                <label htmlFor="save-card">
+                  Save my credit card details securely for future purchases
+                </label>
+              </div>
+              <div className="btn-container">
+                <button
+                  type="button"
+                  id="submit-payment"
+                  className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
+                  disabled={isSuccessfulPayment}
+                >
+                  Pay now
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
+      {isSuccessfulPayment && <ResultComponent />}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { LogoComponent } from "./LogoComponent";
 import { StoreComponent } from "./StoreComponent";
 import { CheckoutContainer } from "./CheckoutContainer";
-import { ResultComponent } from "./ResultComponent";
 import { TrackComponent } from "./TrackComponent";
 import { DetailsComponent } from "./DetailsComponent";
 import { Product, mockProducts } from "../consts/mockProducts";
@@ -45,7 +44,7 @@ export const ContainerComponent = () => {
 
   return (
     <>
-      {/* TODO BASCET (link to CheckoutContainer), TRACK ORDER (link to TrackComponent), LIGHT/DARK MODE, PREVIOUS/NEXT BTN */}
+      {/* TODO TRACK ORDER (link to TrackComponent), LIGHT/DARK MODE, PREVIOUS/NEXT BTN */}
       <LogoComponent />
       {!showCheckout && (
         <StoreComponent
@@ -63,7 +62,6 @@ export const ContainerComponent = () => {
         />
       )}
       {showCheckout && <CheckoutContainer cart={cart} email={email} />}
-      <ResultComponent />
       <TrackComponent />
     </>
   );
