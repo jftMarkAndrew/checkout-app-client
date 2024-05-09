@@ -22,6 +22,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const [isSuccessfulPayment, setSuccessfulPayment] = useState(false);
   const [isOrderId, setOrderId] = useState("");
   const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleTokenSuccess = (token: OrderDetail) => {
     console.log("Token received:", token);
@@ -38,11 +39,12 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   const handleError = (error: OrderError) => {
     console.log("Payment error:", error);
+    setErrorMsg(error.processor.processorDescription);
     setShowError(true);
 
     const timer = setTimeout(() => {
       setShowError(false);
-    }, 2500);
+    }, 5000);
 
     return () => clearTimeout(timer);
   };
@@ -138,7 +140,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
             </form>
           </div>
           <div className="error-container">
-            {showError && <ErrorMessageComponent />}
+            {showError && <ErrorMessageComponent errorType={errorMsg} />}
           </div>
         </div>
       )}

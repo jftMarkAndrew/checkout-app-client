@@ -1,5 +1,5 @@
 interface ErrorMessageComponentProps {
-  errorType?: "LS" | "IF";
+  errorType: "Insufficient Funds" | "Lost/Stolen" | string;
 }
 
 export const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
@@ -7,10 +7,10 @@ export const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
 }) => {
   let message = "Something went wrong. Give it another chance!";
 
-  if (errorType === "LS") {
+  if (errorType === "Lost/Stolen") {
     message =
       "Your card is on the lost / stolen list. Please contact your bank.";
-  } else if (errorType === "IF") {
+  } else if (errorType === "Insufficient Funds") {
     message =
       "Not enough funds. Please check your account balance and try again later.";
   }
