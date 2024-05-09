@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+const orderId = "663c4ff3cc59026bc79bcee9";
+
 export const ResultComponent = () => {
   return (
     <div className="checkout-content">
@@ -11,7 +15,7 @@ export const ResultComponent = () => {
             You can track it using ID on the dedicated page.
           </p>
           <p className="text-shadow">
-            <a href="">Check it now!</a>
+            <Link to={`/tracking/${orderId}`}>Check it now!</Link>
           </p>
         </div>
       </div>

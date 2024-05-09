@@ -26,7 +26,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   };
 
   const handleSuccess = (data: unknown) => {
-    console.log("Payment successful. DATA: ", data);
+    console.log("Payment successful. AuthID: ", data.authorizationId);
     setSuccessfulPayment(true);
   };
 
