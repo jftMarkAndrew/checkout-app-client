@@ -1,6 +1,7 @@
 # UNIPaaS Web SDK Integration Example - CLIENT SIDE
 
-No prerequisites.
+1. SERVER SIDE - https://github.com/jftMarkAndrew/checkout-app-server
+2. No prerequisites!
 
 # React + TypeScript + Vite
 
