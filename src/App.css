@@ -3,12 +3,6 @@
 
 /* fonts */
 
-p {
-  font-family: "Sedan SC", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 h1,
 h3,
 h6 {
@@ -431,15 +425,13 @@ input[type="checkbox"]:checked + label {
   z-index: 1;
   filter: drop-shadow(#16161624 0.5em 0.5em 0);
   transition: all 0.15s ease;
-}
 
-.item-grid {
-  .item-grid-svg:hover {
+  &:hover {
     cursor: pointer;
     filter: drop-shadow(#16161636 0.33em 0.33em 0);
   }
 
-  .item-grid-svg:active {
+  &:active {
     cursor: pointer;
     filter: drop-shadow(#16161636 0.16em 0.16em 0);
   }
