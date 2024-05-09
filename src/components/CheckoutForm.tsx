@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 import { ResultComponent } from "./ResultComponent";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
+import { OrderDetails } from "../interfaces/orderDetails";
 
 declare global {
   interface Window {
@@ -21,16 +22,15 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const [isOrderId, setOrderId] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const handleTokenSuccess = (token: unknown) => {
+  const handleTokenSuccess = (token: OrderDetails) => {
     console.log("Token received:", token);
   };
 
-  const handleSubmission = (data: unknown) => {
+  const handleSubmission = (data: OrderDetails) => {
     console.log("Form submission detected", data);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSuccess = (data: any) => {
+  const handleSuccess = (data: OrderDetails) => {
     setOrderId(data.authorizationId);
     setSuccessfulPayment(true);
   };
