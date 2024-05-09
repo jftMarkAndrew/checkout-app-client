@@ -1,3 +1,5 @@
 export const ErrorMessageComponent = () => {
-  return <div>ErrorMessageComponent</div>;
+  return (
+    <p className="text-error">Something went wrong. Give it another chance.</p>
+  );
 };
