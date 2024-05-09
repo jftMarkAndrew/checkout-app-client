@@ -14,6 +14,7 @@ export const TrackComponent = () => {
       fetchOrderDetails(orderId)
         .then((details) => {
           setOrderDetails(details);
+          console.log(details.consumer.consumerId);
         })
         .catch((error) => {
           console.error("Failed to fetch order details:", error);
