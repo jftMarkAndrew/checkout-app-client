@@ -566,6 +566,16 @@ input[type="checkbox"]:checked + label {
   transition: all 0.15s ease;
 }
 
+.track-order-input {
+  margin-right: 1em;
+  padding: 0 0 0 2em;
+  width: 15em;
+  height: calc(3em - 2px);
+  border: 1px solid #161616;
+  border-radius: 3px;
+  filter: drop-shadow(#16161624 0.5em 0.5em 0);
+}
+
 .btn-pay:hover {
   width: 12em;
   height: 3em;

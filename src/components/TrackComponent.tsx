@@ -1,11 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LogoComponent } from "./LogoComponent";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetails } from "../interfaces/orderDetails";
 
 export const TrackComponent = () => {
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
+  const navigate = useNavigate();
+  const [inputOrderId, setInputOrderId] = useState(orderId || "");
 
   useEffect(() => {
     if (orderId) {
@@ -34,39 +36,69 @@ export const TrackComponent = () => {
     }
   }
 
+  const handleInputChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setInputOrderId(e.target.value);
+  };
+
+  const handleTrackOrder = () => {
+    navigate(`/tracking/${inputOrderId}`);
+  };
+
   return (
     <div>
       <LogoComponent />
       <div className="tracking-container">
         <h1>Where is my order?</h1>
         <p>
-          You can check the status of your purchase using tracking number you
-          received after the successful payment.
+          You can check the status of your purchase using the tracking number
+          you received after successful payment.
         </p>
-        {orderId && <div>Tracking Order ID: {orderId}</div>}
+        <input
+          type="text"
+          value={inputOrderId}
+          onChange={handleInputChange}
+          placeholder="Enter your order ID here"
+          className="track-order-input"
+        />
+        <button className="btn-pay" onClick={handleTrackOrder}>
+          Track Order
+        </button>
       </div>
-      {orderId && (
-        <div className="tracking-table">
-          <h1>Order Tracking</h1>
-          <p>Order ID: {orderId}</p>
-          <p>Data: {}</p>
-          {orderDetails && (
-            <div>
-              <h1>Order Tracking</h1>
-              <p>Order ID: {orderDetails.authorizationId || "N/A"}</p>
-              <p>Status: {orderDetails.authorizationStatus || "N/A"}</p>
-              <p>
-                Amount: {orderDetails.amount || "0"}{" "}
-                {orderDetails.currency || "N/A"}
-              </p>
-              <p>Merchant ID: {orderDetails.merchantId || "N/A"}</p>
-              <p>Transaction Date: {orderDetails.createdAt || "N/A"}</p>
-              {/* Display additional details as needed */}
-              <p>Data: {JSON.stringify(orderDetails)}</p>{" "}
-              {/* Show the whole object as a string for debugging */}
-            </div>
-          )}
-        </div>
+      {orderDetails && (
+        <table className="tracking-table">
+          <tbody>
+            <tr>
+              <th>Date</th>
+              <td>
+                {new Date(orderDetails.createdAt).toLocaleDateString("en-GB")}
+              </td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>
+                {orderDetails.consumer.email.replace(/^(.{3})[^@]*/, "$1***")}
+              </td>
+            </tr>
+            <tr>
+              <th>Card Details</th>
+              <td>{`${orderDetails.paymentOption.brand} **** **** **** ${orderDetails.paymentOption.last4digits}`}</td>
+            </tr>
+            <tr>
+              <th>Amount</th>
+              <td>{`${orderDetails.amount} ${orderDetails.currency}`}</td>
+            </tr>
+            <tr>
+              <th>Country</th>
+              <td>{orderDetails.consumer.shippingAddress.country}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{orderDetails.authorizationStatus}</td>
+            </tr>
+          </tbody>
+        </table>
       )}
     </div>
   );
