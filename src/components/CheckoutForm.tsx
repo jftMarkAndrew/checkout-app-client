@@ -29,6 +29,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
     console.log("Form submission detected", data);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSuccess = (data: any) => {
     setOrderId(data.authorizationId);
     setSuccessfulPayment(true);
