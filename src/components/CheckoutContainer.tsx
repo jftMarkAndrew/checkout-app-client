@@ -15,13 +15,18 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   console.log(cart);
   console.log(email);
   const [sessionToken, setSessionToken] = useState("");
+  const totalAmount = cart.reduce(
+    (sum, item) => sum + item.product.priceGBP * item.quantity,
+    0
+  );
+  console.log(totalAmount);
 
   useEffect(() => {
     const postData = {
-      amount: 250,
+      amount: totalAmount,
       currency: "USD",
       country: "GB",
-      email: "jftmain@gmail.com",
+      email: email,
     };
 
     setTimeout(() => {
@@ -46,7 +51,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
           console.error("Error fetching session token:", error);
         });
     }, 250);
-  }, []);
+  }, [totalAmount, email]);
 
   return (
     <>
