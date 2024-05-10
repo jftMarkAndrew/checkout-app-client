@@ -1,12 +1,8 @@
 // StoreComponent.tsx
 import React from "react";
 import { ItemComponent } from "./ItemComponent";
-import { Product } from "../consts/mockProducts";
-
-type CartItem = {
-  product: Product;
-  quantity: number;
-};
+import { Product } from "../interfaces/Product";
+import { CartItem } from "../interfaces/CartItem";
 
 interface StoreComponentProps {
   products: Product[];

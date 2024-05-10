@@ -3,12 +3,9 @@ import { LogoComponent } from "./LogoComponent";
 import { StoreComponent } from "./StoreComponent";
 import { CheckoutContainer } from "./CheckoutContainer";
 import { DetailsComponent } from "./DetailsComponent";
-import { Product, mockProducts } from "../consts/mockProducts";
-
-export type CartItem = {
-  product: Product;
-  quantity: number;
-};
+import { Product } from "../interfaces/Product";
+import { CartItem } from "../interfaces/CartItem";
+import { mockProducts } from "../consts/mockProducts";
 
 const products: Product[] = mockProducts;
 

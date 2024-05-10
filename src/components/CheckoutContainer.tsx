@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutLoading } from "./CheckoutLoading";
-import { CartItem } from "./ContainerComponent";
+import { CartItem } from "../interfaces/CartItem";
 
 interface CheckoutContainerProps {
   cart: CartItem[];

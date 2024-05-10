@@ -1,5 +1,5 @@
-import { CartItem } from "./ContainerComponent";
 import validator from "validator";
+import { CartItem } from "../interfaces/CartItem";
 
 interface DetailsComponentProps {
   cart: CartItem[];
