@@ -1,4 +1,6 @@
-export const countryCodes = [
+import { CountryCode } from "../interfaces/CountryCode";
+
+export const countryCodes: CountryCode[] = [
   { code: "AD", name: "Andorra" },
   { code: "AE", name: "United Arab Emirates" },
   { code: "AF", name: "Afghanistan" },
