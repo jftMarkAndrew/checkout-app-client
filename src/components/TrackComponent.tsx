@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { LogoComponent } from "./LogoComponent";
 import { SetStateAction, useEffect, useState } from "react";
-import { OrderDetail } from "../interfaces/orderDetail";
+import { OrderDetail } from "../interfaces/OrderDetail";
 
 export const TrackComponent = () => {
   const { orderId } = useParams();

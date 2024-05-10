@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 import { ResultComponent } from "./ResultComponent";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
-import { OrderDetail } from "../interfaces/orderDetail";
-import { OrderError } from "../interfaces/orderError";
+import { OrderDetail } from "../interfaces/OrderDetail";
+import { OrderError } from "../interfaces/OrderError";
 
 declare global {
   interface Window {
