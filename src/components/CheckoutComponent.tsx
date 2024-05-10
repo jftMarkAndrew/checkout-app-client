@@ -3,12 +3,12 @@ import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutLoading } from "./CheckoutLoading";
 import { CartItem } from "../interfaces/CartItem";
 
-interface CheckoutContainerProps {
+interface CheckoutComponentProps {
   cart: CartItem[];
   email: string;
 }
 
-export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
+export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
   cart,
   email,
 }) => {
