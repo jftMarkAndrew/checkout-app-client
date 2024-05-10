@@ -1,4 +1,4 @@
-export const CountryCode = [
+export const countryCodes = [
   { code: "AD", name: "Andorra" },
   { code: "AE", name: "United Arab Emirates" },
   {
