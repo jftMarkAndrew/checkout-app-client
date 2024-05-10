@@ -51,8 +51,11 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   useEffect(() => {
     const checkElements = () => {
       if (
+        document.getElementById("payment-form") &&
         document.getElementById("cardholder") &&
-        document.getElementById("card")
+        document.getElementById("card") &&
+        document.getElementById("save-card") &&
+        document.getElementById("submit-payment")
       ) {
         setReadyForSDK(true);
       } else {
@@ -85,7 +88,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
         document.body.removeChild(script);
       };
     }
-  }, [sessionToken, isReadyForSDK]);
+  }, [sessionToken, isInitialized, isReadyForSDK]);
 
   return (
     <div className="checkout-container">
