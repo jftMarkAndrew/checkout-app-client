@@ -1,36 +1,16 @@
 import { Link } from "react-router-dom";
+import { Toggle } from "./Toggle";
 
 export const LogoComponent = () => {
   return (
-    <div className="logo-grid-column">
+    <div className="logo">
       <Link to="/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1080 216"
-          width="100%"
-          className="item-grid-svg"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <defs>
-            <clipPath id="clip">
-              <path
-                d="M780,468h0a36,36,0,0,1-36,36H456a36,36,0,0,0-36,36v72a36,36,0,0,0,36,36h936a36,36,0,0,0,36-36h0a36,36,0,0,1,36-36h0a36,36,0,0,0,36-36V468a36,36,0,0,0-36-36H816A36,36,0,0,0,780,468Z"
-                transform="translate(-420 -432)"
-              />
-            </clipPath>
-          </defs>
-          <image
-            href="/img/minimal-923194_1920.jpg"
-            width="100%"
-            x="0"
-            y="-744"
-            clipPath="url(#clip)"
-            preserveAspectRatio="xMidYMid slice"
-          />
-        </svg>
+        <div className="logo-unipaas"></div>
       </Link>
-
-      <div className="logo-grid-title unipaas-title">
+      <div className="toggle">
+        <Toggle />
+      </div>
+      <div className="logo-title">
         <h1>
           <a href="https://www.unipaas.com/" target="_blank">
             UNIPaaS
@@ -47,7 +27,11 @@ export const LogoComponent = () => {
           </a>
         </p>
       </div>
-      <div className="logo-grid-bottom-right-corner"></div>
+      {/* <div className="menu-container">
+        <Link to="/tracking">
+          <button className="btn-menu">Track Order</button>
+        </Link>
+      </div> */}
     </div>
   );
 };
