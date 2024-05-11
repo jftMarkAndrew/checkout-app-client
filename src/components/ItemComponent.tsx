@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Currency, currencyCodes } from "../consts/currencyCodes";
 
 interface ItemComponentProps {
   imageUrl: string;
   productName: string;
   productPriceGBP: string;
+  currency: Currency;
   quantity: number;
   onAddItem: () => void;
 }
@@ -12,10 +14,20 @@ export const ItemComponent: React.FC<ItemComponentProps> = ({
   imageUrl,
   productName,
   productPriceGBP,
+  currency,
   quantity,
   onAddItem,
 }) => {
   const [hover, setHover] = useState(false);
+  const [cost, setCost] = useState(0);
+
+  useEffect(() => {
+    return currency === Currency.GBP
+      ? setCost(+productPriceGBP)
+      : currency === Currency.USD
+      ? setCost(+productPriceGBP * currencyCodes[1].approximateValue)
+      : setCost(+productPriceGBP * currencyCodes[2].approximateValue);
+  }, [currency, productPriceGBP]);
 
   return (
     <div
@@ -57,7 +69,8 @@ export const ItemComponent: React.FC<ItemComponentProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - £{productPriceGBP}
+              {productName} - {currency}
+              {cost.toFixed(0)}
             </text>
           </g>
         )}

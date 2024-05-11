@@ -1,13 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import { LogoComponent } from "./LogoComponent";
 import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetail } from "../interfaces/OrderDetail";
+import { Currency } from "../consts/currencyCodes";
 
 export const TrackComponent = () => {
+  const [currency, setCurrency] = useState<Currency>(Currency.GBP);
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<OrderDetail | null>(null);
   const navigate = useNavigate();
   const [inputOrderId, setInputOrderId] = useState(orderId || "");
+
+  const handleCurrencyChange = (currency: Currency) => {
+    console.log("Currency changed to:", currency);
+    setCurrency(currency);
+  };
 
   useEffect(() => {
     if (orderId) {
@@ -49,7 +57,7 @@ export const TrackComponent = () => {
 
   return (
     <div>
-      <LogoComponent />
+      <LogoComponent onCurrencyChange={handleCurrencyChange} />
       <div className="tracking-container">
         <h1>Where is my order?</h1>
         <p>

@@ -1,9 +1,11 @@
 import validator from "validator";
 import { CartItem } from "../interfaces/CartItem";
+import { Currency, currencyCodes } from "../consts/currencyCodes";
 
 interface DetailsComponentProps {
   cart: CartItem[];
   email: string;
+  currency: Currency;
   onEmailChange: (email: string) => void;
   onContinue: () => void;
 }
@@ -11,13 +13,34 @@ interface DetailsComponentProps {
 export const DetailsComponent: React.FC<DetailsComponentProps> = ({
   cart,
   email,
+  currency,
   onEmailChange,
   onContinue,
 }) => {
-  const total = cart.reduce(
-    (sum, item) => sum + item.product.priceGBP * item.quantity,
-    0
-  );
+  let total = 0;
+
+  currency === Currency.GBP
+    ? (total = cart.reduce(
+        (sum, item) => sum + item.product.priceGBP * item.quantity,
+        0
+      ))
+    : currency === Currency.USD
+    ? (total = cart.reduce(
+        (sum, item) =>
+          sum +
+          item.product.priceGBP *
+            currencyCodes[1].approximateValue *
+            item.quantity,
+        0
+      ))
+    : (total = cart.reduce(
+        (sum, item) =>
+          sum +
+          item.product.priceGBP *
+            currencyCodes[2].approximateValue *
+            item.quantity,
+        0
+      ));
 
   const isValidEmail = (email: string): boolean => {
     return validator.isEmail(email);
@@ -25,7 +48,10 @@ export const DetailsComponent: React.FC<DetailsComponentProps> = ({
 
   return (
     <div className="details-container">
-      <h1 className="text-shadow">£{total.toFixed(0)}</h1>
+      <h1 className="text-shadow">
+        {currency}
+        {total.toFixed(0)}
+      </h1>
       <input
         type="email"
         value={email}

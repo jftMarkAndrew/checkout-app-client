@@ -2,29 +2,57 @@ import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutLoading } from "./CheckoutLoading";
 import { CartItem } from "../interfaces/CartItem";
+import { Currency, currencyCodes } from "../consts/currencyCodes";
 
 interface CheckoutComponentProps {
   cart: CartItem[];
   email: string;
+  currency: string;
 }
 
 export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
   cart,
   email,
+  currency,
 }) => {
-  console.log(cart);
-  console.log(email);
   const [sessionToken, setSessionToken] = useState("");
-  const totalAmount = cart.reduce(
-    (sum, item) => sum + item.product.priceGBP * item.quantity,
-    0
-  );
-  console.log(totalAmount);
+
+  let totalAmount = 0;
+  let currencyCode = "GBP";
+
+  currency === Currency.GBP
+    ? (totalAmount = cart.reduce(
+        (sum, item) => sum + item.product.priceGBP * item.quantity,
+        0
+      ))
+    : currency === Currency.USD
+    ? (totalAmount = cart.reduce(
+        (sum, item) =>
+          sum +
+          item.product.priceGBP *
+            currencyCodes[1].approximateValue *
+            item.quantity,
+        0
+      ))
+    : (totalAmount = cart.reduce(
+        (sum, item) =>
+          sum +
+          item.product.priceGBP *
+            currencyCodes[2].approximateValue *
+            item.quantity,
+        0
+      ));
+
+  currency === Currency.GBP
+    ? (currencyCode = "GBP")
+    : currency === Currency.USD
+    ? (currencyCode = "USD")
+    : (currencyCode = "EUR");
 
   useEffect(() => {
     const postData = {
       amount: totalAmount,
-      currency: "USD",
+      currency: currencyCode,
       country: "GB",
       email: email,
     };
@@ -49,7 +77,7 @@ export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
       .catch((error) => {
         console.error("Error fetching session token:", error);
       });
-  }, [totalAmount, email]);
+  }, [totalAmount, email, currency, currencyCode]);
 
   return (
     <>
