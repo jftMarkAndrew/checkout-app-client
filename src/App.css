@@ -634,6 +634,7 @@ input[type="checkbox"]:checked + label {
 .checkout-design-card {
   width: 27em;
   aspect-ratio: 1.585 / 1;
+  border: 1px var(--drop-shadow-mouseover) solid;
   background-color: var(--text-color) 60;
   box-shadow: var(--drop-shadow-mouseover) 0.5em 0.5em 0;
   border-radius: 24px;
