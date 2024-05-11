@@ -1,24 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap");
 
-/* light or dark */
-
-:root {
-  --darkbg: #121212;
-  --darkt: #f4f3ef;
-  --lightbg: #f4f3ef;
-  --lightt: #da3703;
-
-  --toggleHeight: 16em;
-  --toggleWidth: 16em;
-  --toggleBtnRadius: 10em;
-
-  --bgColor--night: #2a2c34;
-  --toggleBtn-bgColor--night: var(--bgColor--night);
-  --mooncolor: #d9fbff;
-  --bgColor--day: #9ee3fb;
-  --toggleBtn-bgColor--day: var(--bgColor--day);
-}
+/* basic */
 
 :root {
   --background-color: #f4f3ef;
@@ -55,10 +38,10 @@ body {
   cursor: pointer;
   font-size: 16.67%;
   position: relative;
-  height: var(--toggleHeight);
-  width: var(--toggleWidth);
-  border-radius: var(--toggleHeight);
-  background: var(--bgColor--night);
+  height: 16em;
+  width: 16em;
+  border-radius: 16em;
+  background: #2a2c34;
 
   transition: all 0.15s ease;
   filter: drop-shadow(var(--drop-shadow-mouseover) 1.5em 1.5em 0);
@@ -87,10 +70,10 @@ body {
   top: 3em;
   left: 3em;
   transform: rotate(-75deg);
-  width: var(--toggleBtnRadius);
-  height: var(--toggleBtnRadius);
-  background: var(--bgColor--night);
-  box-shadow: 3em 2.5em 0 0em var(--mooncolor) inset;
+  width: 10em;
+  height: 10em;
+  background: #2a2c34;
+  box-shadow: 3em 2.5em 0 0em #d9fbff inset;
 }
 
 .sun {
@@ -163,36 +146,27 @@ a:active {
   filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
 }
 
-.logo-unipaas {
+.logo-container {
   position: absolute;
   left: 0em;
   top: 0.25em;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-unipaas {
   width: 12em;
   height: 14em;
-  background-image: url("/src/assets/icons/fav_icon_logo_unipaas.svg");
-
-  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
-  transition: all 0.15s ease;
-
-  &:hover {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
-  }
-
-  &:active {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
-  }
 }
 
 .logo-title {
-  padding-left: 7.5em;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 30vw;
   z-index: 1;
   color: #f4f3ef;
