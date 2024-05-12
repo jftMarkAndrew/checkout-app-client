@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { Currency } from "../consts/currencyCodes";
+import { CountryDropdown } from "./CountryDropdown";
 
 interface LogoComponentProps {
   onCurrencyChange: (currency: Currency) => void;
@@ -45,15 +46,12 @@ export const LogoComponent: React.FC<LogoComponentProps> = ({
             <img src="/src/assets/icons/home_icon.svg" alt="Home" />
           </button>
         </Link>
-        {/* <Link to="/cart">
-          <button className="btn-menu">
-            <img src="/src/assets/icons/cart_icon.svg" alt="Cart" />
-          </button>
-        </Link> */}
         <CurrencyDropdown onCurrencyChange={onCurrencyChange} />
-        <button className="btn-menu">IL</button>
+        <CountryDropdown />
         <Link to="/tracking">
-          <button className="btn-menu">Orders</button>
+          <button className="btn-menu">
+            <img src="/src/assets/icons/cart_icon.svg" alt="Home" />
+          </button>
         </Link>
       </div>
     </div>
