@@ -7,6 +7,7 @@ import { Currency } from "../consts/currencyCodes";
 
 export const TrackComponent = () => {
   const [currency, setCurrency] = useState<Currency>(Currency.GBP);
+
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<OrderDetail | null>(null);
   const navigate = useNavigate();
