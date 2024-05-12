@@ -13,7 +13,7 @@ const products: Product[] = mockProducts;
 
 export const ContainerComponent: React.FC = () => {
   const [currency, setCurrency] = useState<Currency>(Currency.GBP);
-  const [countryCode, setCountryCode] = useState("");
+  const [countryCode, setCountryCode] = useState("IL");
   const [showCheckout, setShowCheckout] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [email, setEmail] = useState("");
