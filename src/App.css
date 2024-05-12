@@ -553,10 +553,6 @@ input[type="checkbox"]:checked + label {
   font-size: 12px;
 }
 
-#card {
-  width: 375px;
-}
-
 /* store container */
 
 .store-container {
@@ -683,6 +679,11 @@ input[type="checkbox"]:checked + label {
   width: 100px;
   text-align: center;
   animation: grow-animation 1.5s ease-in-out infinite;
+}
+
+#cardholder,
+#card {
+  background-color: #f4f3ef;
 }
 
 @keyframes grow-animation {
