@@ -4,10 +4,11 @@ import { LogoComponent } from "./LogoComponent";
 import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetail } from "../interfaces/OrderDetail";
 import { Currency } from "../consts/currencyCodes";
+import { CountryCode } from "../interfaces/CountryCode";
 
 export const TrackComponent = () => {
   const [currency, setCurrency] = useState<Currency>(Currency.GBP);
-
+  const [countryCode, setCountryCode] = useState("");
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<OrderDetail | null>(null);
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ export const TrackComponent = () => {
   const handleCurrencyChange = (currency: Currency) => {
     console.log("Currency changed to:", currency);
     setCurrency(currency);
+  };
+
+  const handleCountryChange = (code: CountryCode) => {
+    console.log("Selected country code:", code);
+    setCountryCode(code.code);
   };
 
   useEffect(() => {
@@ -58,7 +64,10 @@ export const TrackComponent = () => {
 
   return (
     <div>
-      <LogoComponent onCurrencyChange={handleCurrencyChange} />
+      <LogoComponent
+        onCurrencyChange={handleCurrencyChange}
+        onCountryChange={handleCountryChange}
+      />
       <div className="tracking-container">
         <h1>Where is my order?</h1>
         <p>
