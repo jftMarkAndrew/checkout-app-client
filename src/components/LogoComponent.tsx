@@ -3,13 +3,16 @@ import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { Currency } from "../consts/currencyCodes";
 import { CountryDropdown } from "./CountryDropdown";
+import { CountryCode } from "../interfaces/CountryCode";
 
 interface LogoComponentProps {
   onCurrencyChange: (currency: Currency) => void;
+  onCountryChange: (code: CountryCode) => void;
 }
 
 export const LogoComponent: React.FC<LogoComponentProps> = ({
   onCurrencyChange,
+  onCountryChange,
 }) => {
   return (
     <div className="logo">
@@ -47,7 +50,7 @@ export const LogoComponent: React.FC<LogoComponentProps> = ({
           </button>
         </Link>
         <CurrencyDropdown onCurrencyChange={onCurrencyChange} />
-        <CountryDropdown />
+        <CountryDropdown onCountryChange={onCountryChange} />
         <Link to="/tracking">
           <button className="btn-menu">
             <img src="/src/assets/icons/cart_icon.svg" alt="Home" />

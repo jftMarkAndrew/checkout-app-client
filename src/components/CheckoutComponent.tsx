@@ -3,17 +3,20 @@ import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutLoading } from "./CheckoutLoading";
 import { CartItem } from "../interfaces/CartItem";
 import { Currency, currencyCodes } from "../consts/currencyCodes";
+import { CountryCode } from "../interfaces/CountryCode";
 
 interface CheckoutComponentProps {
   cart: CartItem[];
   email: string;
   currency: string;
+  countryCode: CountryCode["code"];
 }
 
 export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
   cart,
   email,
   currency,
+  countryCode,
 }) => {
   const [sessionToken, setSessionToken] = useState("");
 
@@ -53,7 +56,7 @@ export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
     const postData = {
       amount: totalAmount,
       currency: currencyCode,
-      country: "GB",
+      country: countryCode,
       email: email,
     };
 
@@ -77,7 +80,7 @@ export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
       .catch((error) => {
         console.error("Error fetching session token:", error);
       });
-  }, [totalAmount, email, currency, currencyCode]);
+  }, [totalAmount, email, currency, currencyCode, countryCode]);
 
   return (
     <>

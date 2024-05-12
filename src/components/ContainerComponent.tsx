@@ -7,11 +7,13 @@ import { Product } from "../interfaces/Product";
 import { CartItem } from "../interfaces/CartItem";
 import { mockProducts } from "../consts/mockProducts";
 import { Currency } from "../consts/currencyCodes";
+import { CountryCode } from "../interfaces/CountryCode";
 
 const products: Product[] = mockProducts;
 
 export const ContainerComponent: React.FC = () => {
   const [currency, setCurrency] = useState<Currency>(Currency.GBP);
+  const [countryCode, setCountryCode] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [email, setEmail] = useState("");
@@ -19,6 +21,11 @@ export const ContainerComponent: React.FC = () => {
   const handleCurrencyChange = (currency: Currency) => {
     console.log("Currency changed to:", currency);
     setCurrency(currency);
+  };
+
+  const handleCountryChange = (code: CountryCode) => {
+    console.log("Selected country code:", code);
+    setCountryCode(code.code);
   };
 
   const handleAddToCart = (product: Product) => {
@@ -47,7 +54,10 @@ export const ContainerComponent: React.FC = () => {
 
   return (
     <>
-      <LogoComponent onCurrencyChange={handleCurrencyChange} />
+      <LogoComponent
+        onCurrencyChange={handleCurrencyChange}
+        onCountryChange={handleCountryChange}
+      />
       {!showCheckout && (
         <StoreComponent
           products={products}
@@ -66,7 +76,12 @@ export const ContainerComponent: React.FC = () => {
         />
       )}
       {showCheckout && (
-        <CheckoutComponent cart={cart} email={email} currency={currency} />
+        <CheckoutComponent
+          cart={cart}
+          email={email}
+          currency={currency}
+          countryCode={countryCode}
+        />
       )}
     </>
   );

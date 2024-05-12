@@ -2,7 +2,13 @@ import { useState } from "react";
 import { CountryCode } from "../interfaces/CountryCode";
 import { countryCodes } from "../consts/countryCodes";
 
-export const CountryDropdown: React.FC = () => {
+interface CountryDropdownProps {
+  onCountryChange: (code: CountryCode) => void;
+}
+
+export const CountryDropdown: React.FC<CountryDropdownProps> = ({
+  onCountryChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<CountryCode>(
     countryCodes[0]
@@ -12,6 +18,7 @@ export const CountryDropdown: React.FC = () => {
 
   const handleSelectCountry = (country: CountryCode) => {
     setSelectedCountry(country);
+    onCountryChange(country);
     setIsOpen(false);
   };
 
