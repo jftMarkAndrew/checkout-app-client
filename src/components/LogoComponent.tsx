@@ -44,11 +44,11 @@ export const LogoComponent: React.FC<LogoComponentProps> = ({
         <Toggle />
       </div>
       <div className="menu-container">
-        <Link to="/">
+        <a href="/">
           <button className="btn-menu">
             <img src="/src/assets/icons/home_icon.svg" alt="Home" />
           </button>
-        </Link>
+        </a>
         {onCurrencyChange && (
           <CurrencyDropdown onCurrencyChange={onCurrencyChange} />
         )}
