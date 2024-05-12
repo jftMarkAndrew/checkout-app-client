@@ -1,6 +1,9 @@
 import { CountryCode } from "../interfaces/CountryCode";
 
 export const countryCodes: CountryCode[] = [
+  { code: "IL", name: "Israel" },
+  { code: "GB", name: "United Kingdom" },
+  { code: "US", name: "United States of America" },
   { code: "AD", name: "Andorra" },
   { code: "AE", name: "United Arab Emirates" },
   { code: "AF", name: "Afghanistan" },
@@ -77,7 +80,6 @@ export const countryCodes: CountryCode[] = [
   { code: "FO", name: "Faroe Islands" },
   { code: "FR", name: "France" },
   { code: "GA", name: "Gabon" },
-  { code: "GB", name: "United Kingdom of Great Britain and Northern Ireland" },
   { code: "GD", name: "Grenada" },
   { code: "GE", name: "Georgia" },
   { code: "GF", name: "French Guiana" },
@@ -103,7 +105,6 @@ export const countryCodes: CountryCode[] = [
   { code: "HU", name: "Hungary" },
   { code: "ID", name: "Indonesia" },
   { code: "IE", name: "Ireland" },
-  { code: "IL", name: "Israel" },
   { code: "IM", name: "Isle of Man" },
   { code: "IN", name: "India" },
   { code: "IO", name: "British Indian Ocean Territory" },
@@ -233,7 +234,6 @@ export const countryCodes: CountryCode[] = [
   { code: "UA", name: "Ukraine" },
   { code: "UG", name: "Uganda" },
   { code: "UM", name: "United States Minor Outlying Islands" },
-  { code: "US", name: "United States of America" },
   { code: "UY", name: "Uruguay" },
   { code: "UZ", name: "Uzbekistan" },
   { code: "VA", name: "Holy See" },
