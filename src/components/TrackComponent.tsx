@@ -44,7 +44,6 @@ export const TrackComponent = () => {
         throw new Error("Failed to fetch order details");
       }
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error("Failed to fetch order details:", error);

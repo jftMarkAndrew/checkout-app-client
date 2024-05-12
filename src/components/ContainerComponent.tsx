@@ -19,12 +19,10 @@ export const ContainerComponent: React.FC = () => {
   const [email, setEmail] = useState("");
 
   const handleCurrencyChange = (currency: Currency) => {
-    console.log("Currency changed to:", currency);
     setCurrency(currency);
   };
 
   const handleCountryChange = (code: CountryCode) => {
-    console.log("Selected country code:", code);
     setCountryCode(code.code);
   };
 
