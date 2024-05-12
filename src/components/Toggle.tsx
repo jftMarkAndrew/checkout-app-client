@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import useLocalStorage from "use-local-storage";
 
 export const Toggle = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isLight, setIsLight] = useLocalStorage("light", true);
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      isLight ? "light" : "dark"
+    );
+  }, [isLight]);
 
   const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     const newTheme = currentTheme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", newTheme);
-    setIsDark(!isDark);
+    setIsLight(!isLight);
   };
   return (
-    <div className={`tdnn ${isDark ? "day" : ""}`} onClick={toggleTheme}>
-      <div className={`moon ${isDark ? "sun" : ""}`}></div>
+    <div className={`tdnn ${isLight ? "day" : ""}`} onClick={toggleTheme}>
+      <div className={`moon ${isLight ? "sun" : ""}`}></div>
     </div>
   );
 };
