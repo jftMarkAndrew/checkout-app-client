@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Currency } from "../consts/currencyCodes";
+import useLocalStorage from "use-local-storage";
 
 interface CurrencyDropdownProps {
   onCurrencyChange: (currencyCode: Currency) => void;
@@ -15,7 +16,8 @@ export const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(
+  const [selectedCurrency, setSelectedCurrency] = useLocalStorage<Currency>(
+    "selectedCurrency",
     Currency.GBP
   );
 
