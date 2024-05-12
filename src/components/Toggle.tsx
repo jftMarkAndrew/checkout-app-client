@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 
 export const Toggle = () => {
-  const [isLight, setIsLight] = useLocalStorage("light", true);
+  const themePreference = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  const [isLight, setIsLight] = useLocalStorage("light", themePreference);
 
   useEffect(() => {
     document.documentElement.setAttribute(
