@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CountryCode } from "../interfaces/CountryCode";
 import { countryCodes } from "../consts/countryCodes";
+import useLocalStorage from "use-local-storage";
 
 interface CountryDropdownProps {
   onCountryChange: (code: CountryCode) => void;
@@ -10,7 +11,8 @@ export const CountryDropdown: React.FC<CountryDropdownProps> = ({
   onCountryChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<CountryCode>(
+  const [selectedCountry, setSelectedCountry] = useLocalStorage<CountryCode>(
+    "selectedCountry",
     countryCodes[0]
   );
 
