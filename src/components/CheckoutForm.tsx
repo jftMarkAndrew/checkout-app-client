@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 import { ResultComponent } from "./ResultComponent";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
 import { OrderDetail } from "../interfaces/OrderDetail";
 import { OrderError } from "../interfaces/OrderError";
+import useLocalStorage from "use-local-storage";
 
 declare global {
   interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Unipaas: any;
   }
 }
@@ -17,12 +18,18 @@ interface CheckoutFormProps {
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
+  const unipaasRef = useRef<any>(null);
   const isInitialized = useRef(false);
+  const [checkoutData, setCheckoutData] = useState<OrderDetail | null>(null);
   const [isReadyForSDK, setReadyForSDK] = useState(false);
   const [isSuccessfulPayment, setSuccessfulPayment] = useState(false);
   const [isOrderId, setOrderId] = useState("");
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isSaveCardChecked, setIsSaveCardChecked] = useState(false);
+  const [consumerPaymentOptionId, setConsumerPaymentOptionId] = useLocalStorage<
+    string | null
+  >("consumerPaymentOption", null);
 
   const handleTokenSuccess = (token: OrderDetail) => {
     console.log("Token received:", token);
@@ -33,6 +40,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   };
 
   const handleSuccess = (data: OrderDetail) => {
+    setCheckoutData(data);
     setOrderId(data.authorizationId);
     setSuccessfulPayment(true);
   };
@@ -46,6 +54,26 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
     }, 5000);
 
     return () => clearTimeout(timer);
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSaveCardChecked(event.target.checked);
+  };
+
+  const storeConsumerPaymentOptionId = () => {
+    if (checkoutData) {
+      isSaveCardChecked
+        ? setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId)
+        : setConsumerPaymentOptionId(null);
+    }
+  };
+
+  const makePaymentWithSavedCardFlow = () => {
+    unipaasRef.current.payWithToken(sessionToken, {
+      mode: "test",
+    });
+    unipaasRef.current.makePayment(consumerPaymentOptionId);
+    setSuccessfulPayment(true);
   };
 
   useEffect(() => {
@@ -80,6 +108,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
           unipaas.on("onSuccess", handleSuccess);
           unipaas.on("onError", handleError);
 
+          unipaasRef.current = unipaas;
           isInitialized.current = true;
         }
       };
@@ -89,6 +118,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
       };
     }
   }, [sessionToken, isInitialized, isReadyForSDK]);
+
+  useEffect(() => {
+    storeConsumerPaymentOptionId();
+  }, [checkoutData, isSaveCardChecked]);
 
   return (
     <div className="checkout-container">
@@ -124,7 +157,13 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                 </label>
               </div>
               <div className="payment-checkbox">
-                <input type="checkbox" id="save-card" name="save-card" />
+                <input
+                  type="checkbox"
+                  id="save-card"
+                  name="save-card"
+                  checked={isSaveCardChecked}
+                  onChange={handleCheckboxChange}
+                />
                 <label htmlFor="save-card">
                   Save my credit card details securely for future purchases
                 </label>
@@ -138,6 +177,17 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                 >
                   Pay now
                 </button>
+                {consumerPaymentOptionId && (
+                  <button
+                    type="button"
+                    id="submit-payment"
+                    className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
+                    disabled={isSuccessfulPayment}
+                    onClick={() => makePaymentWithSavedCardFlow()}
+                  >
+                    Pay with saved card
+                  </button>
+                )}
               </div>
             </form>
           </div>
