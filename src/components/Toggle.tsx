@@ -3,7 +3,7 @@ import useLocalStorage from "use-local-storage";
 
 export const Toggle = () => {
   const themePreference = window.matchMedia(
-    "(prefers-color-scheme: dark)"
+    "(prefers-color-scheme: light)"
   ).matches;
   const [isLight, setIsLight] = useLocalStorage("light", themePreference);
 
