@@ -703,6 +703,7 @@ input[type="checkbox"]:checked + label {
   display: flex;
   justify-content: center;
   padding-top: 2em;
+  gap: 1em;
 }
 
 .error-container {
