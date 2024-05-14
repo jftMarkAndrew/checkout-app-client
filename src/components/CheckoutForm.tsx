@@ -121,7 +121,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   useEffect(() => {
     storeConsumerPaymentOptionId();
-  }, [checkoutData, isSaveCardChecked]);
+  });
 
   return (
     <div className="checkout-container">
