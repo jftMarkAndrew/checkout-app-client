@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
-import { CheckoutLoading } from "./CheckoutLoading";
+import { Loading } from "./Loading";
 import { CartItem } from "../interfaces/CartItem";
 import { Currency, currencyCodes } from "../consts/currencyCodes";
 import { CountryCode } from "../interfaces/CountryCode";
@@ -88,7 +88,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
         <CheckoutForm sessionToken={sessionToken} />
       ) : (
         <div className="checkout-container checkout-content">
-          <CheckoutLoading />
+          <Loading />
         </div>
       )}
     </>

@@ -1,4 +1,4 @@
-export const CheckoutLoading = () => {
+export const Loading = () => {
   return (
     <div className="chekout-container">
       <img
