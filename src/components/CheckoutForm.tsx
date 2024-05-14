@@ -79,12 +79,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId);
         setConsumerCartBrand(checkoutData.paymentOption.brand);
         setConsumerLast4Digits(checkoutData.paymentOption.last4digits);
-      } else {
-        //todo if paid with saved card do not proceed!
-        setConsumerPaymentOptionId(null);
-        setConsumerCartBrand(null);
-        setConsumerLast4Digits(null);
       }
+      setSuccessfulPayment(true);
     }
   };
 
@@ -93,7 +89,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
       mode: "test",
     });
     unipaasRef.current.makePayment(consumerPaymentOptionId);
-    setSuccessfulPayment(true);
   };
 
   useEffect(() => {
