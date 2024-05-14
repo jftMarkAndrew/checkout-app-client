@@ -856,6 +856,20 @@ fieldset {
   }
 }
 
+.copy-to-clipboard {
+  padding: 0 0.5em;
+  cursor: pointer;
+  animation: all 0.15s ease;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
+}
+
 .description-container {
   padding-top: 3em;
   display: flex;

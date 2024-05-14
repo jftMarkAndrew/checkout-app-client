@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
+import { MdContentCopy } from "react-icons/md";
 
 interface ResultProps {
   orderId: string;
 }
 
 export const Result: React.FC<ResultProps> = ({ orderId }) => {
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(orderId);
+      console.log("Copied to Clipboard!");
+    } catch (err) {
+      console.log("Failed to copy!");
+    }
+  };
   return (
     <div className="checkout-content">
       <h3 className="big-screen-only">Payment Details</h3>
@@ -30,6 +39,7 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
                 value={orderId}
                 className="track-order-input"
               />
+              <MdContentCopy className="copy-to-clipboard" onClick={handleCopy} />
             </div>
             <div>
               <h3 className="text-or">or</h3>
