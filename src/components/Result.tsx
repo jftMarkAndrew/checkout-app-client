@@ -14,12 +14,36 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
             Congratulations, your order is already on the way!
           </p>
           <p className="text-shadow">
-            You can track it using ID on the dedicated page.
+            You can track it using ID on the{" "}
+            <Link to={`/tracking/`} target="_blank">
+              dedicated page
+            </Link>
+            .
           </p>
-          <p className="text-shadow">
-            <Link to={`/tracking/${orderId}`}>Check it now!</Link> or save it
-            for later: <strong>{orderId}</strong>
-          </p>
+          <div className="btn-container">
+            <div>
+              <h3 className="payment-amount">Save</h3>
+              <input
+                type="text"
+                value={orderId}
+                className="track-order-input"
+              />
+            </div>
+            <div>
+              <h3 className="payment-amount">or</h3>
+              <Link to={`/tracking/${orderId}`} target="_blank">
+                <button className="btn-pay">Check It Now!</button>
+              </Link>
+            </div>
+          </div>
+          {/* 
+          <input
+            type="text"
+            value={inputOrderId}
+            onChange={handleInputChange}
+            placeholder="Enter your order ID here"
+            className="track-order-input"
+          /> */}
         </div>
       </div>
     </div>
