@@ -91,7 +91,7 @@ export const Item: React.FC<ItemProps> = ({
           </g>
         }
       </svg>
-      <div className="item-grid-bottom-right-corner text-shadow">
+      <div className="item-grid-bottom-right-corner text-shadow text-cost">
         {quantity > 0 && <p className="multiplier">x</p>}
         <h1>{quantity > 0 ? quantity : ""}</h1>
       </div>

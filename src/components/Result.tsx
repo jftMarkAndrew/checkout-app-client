@@ -24,7 +24,7 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
         <div>
           <div className="btn-container">
             <div>
-              <h3 className="or">Save</h3>
+              <h3 className="text-or">Save</h3>
               <input
                 type="text"
                 value={orderId}
@@ -32,7 +32,7 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
               />
             </div>
             <div>
-              <h3 className="or">or</h3>
+              <h3 className="text-or">or</h3>
               <Link to={`/tracking/${orderId}`} target="_blank">
                 <button className="btn-pay">Check It Now!</button>
               </Link>

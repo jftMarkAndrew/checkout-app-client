@@ -204,7 +204,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 >
                   Pay now
                 </button>
-                {consumerPaymentOptionId && <h3 className="or">or</h3>}
+                {consumerPaymentOptionId && <h3 className="text-or">or</h3>}
                 {consumerPaymentOptionId && (
                   <button
                     type="button"
