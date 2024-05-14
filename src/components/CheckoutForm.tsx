@@ -206,7 +206,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 {consumerPaymentOptionId && (
                   <button
                     type="button"
-                    id="submit-payment"
                     className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
                     disabled={isSuccessfulPayment}
                     onClick={() => makePaymentWithSavedCardFlow()}
