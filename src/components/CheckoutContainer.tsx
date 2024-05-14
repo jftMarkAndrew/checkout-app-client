@@ -85,7 +85,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   return (
     <>
       {sessionToken ? (
-        <CheckoutForm sessionToken={sessionToken} />
+        <CheckoutForm sessionToken={sessionToken} totalAmount={totalAmount} currency={currency} />
       ) : (
         <div className="checkout-container checkout-content">
           <Loading />

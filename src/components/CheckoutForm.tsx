@@ -15,9 +15,15 @@ declare global {
 
 interface CheckoutFormProps {
   sessionToken: string;
+  totalAmount: number;
+  currency: string;
 }
 
-export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
+export const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  sessionToken,
+  totalAmount,
+  currency,
+}) => {
   const unipaasRef = useRef<any>(null);
   const isInitialized = useRef(false);
   const [checkoutData, setCheckoutData] = useState<OrderDetail | null>(null);
@@ -30,6 +36,12 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
   const [consumerPaymentOptionId, setConsumerPaymentOptionId] = useLocalStorage<
     string | null
   >("consumerPaymentOption", null);
+  const [consumerCartBrand, setConsumerCartBrand] = useLocalStorage<
+    string | null
+  >("consumerCartBrand", null);
+  const [consumerLast4Digits, setConsumerLast4Digits] = useLocalStorage<
+    string | null
+  >("consumerLast4Digits", null);
 
   const handleTokenSuccess = (token: OrderDetail) => {
     console.log("Token received:", token);
@@ -62,9 +74,17 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
 
   const storeConsumerPaymentOptionId = () => {
     if (checkoutData) {
-      isSaveCardChecked
-        ? setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId)
-        : setConsumerPaymentOptionId(null);
+      console.log("Checkout data: " + checkoutData.paymentOption);
+      if (isSaveCardChecked) {
+        setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId);
+        setConsumerCartBrand(checkoutData.paymentOption.brand);
+        setConsumerLast4Digits(checkoutData.paymentOption.last4digits);
+      } else {
+        //todo if paid with saved card do not proceed!
+        setConsumerPaymentOptionId(null);
+        setConsumerCartBrand(null);
+        setConsumerLast4Digits(null);
+      }
     }
   };
 
@@ -169,6 +189,15 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                 </label>
               </div>
               <div className="btn-container">
+                <h3>
+                  Payment Amount:{" "}
+                  <span className="payment-amount">
+                    {totalAmount}
+                    {currency}
+                  </span>
+                </h3>
+              </div>
+              <div className="btn-container">
                 <button
                   type="button"
                   id="submit-payment"
@@ -178,6 +207,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                   Pay now
                 </button>
                 {consumerPaymentOptionId && (
+                  <h3 className="payment-amount">or</h3>
+                )}
+                {consumerPaymentOptionId && (
                   <button
                     type="button"
                     id="submit-payment"
@@ -185,7 +217,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
                     disabled={isSuccessfulPayment}
                     onClick={() => makePaymentWithSavedCardFlow()}
                   >
-                    Pay with saved card
+                    Pay with {consumerCartBrand}
+                    {consumerLast4Digits}
                   </button>
                 )}
               </div>
