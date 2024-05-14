@@ -42,6 +42,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [consumerLast4Digits, setConsumerLast4Digits] = useLocalStorage<
     string | null
   >("consumerLast4Digits", null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleTokenSuccess = (token: OrderDetail) => {
     console.log("Token received:", token);
@@ -84,10 +85,13 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   };
 
   const makePaymentWithSavedCardFlow = () => {
+    setIsProcessing(true);
     unipaasRef.current.payWithToken(sessionToken, {
       mode: "test",
     });
-    unipaasRef.current.makePayment(consumerPaymentOptionId);
+    unipaasRef.current.makePayment(consumerPaymentOptionId).finally(() => {
+      setIsProcessing(false);
+    });
   };
 
   useEffect(() => {
@@ -204,12 +208,25 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 {consumerPaymentOptionId && (
                   <button
                     type="button"
-                    className={isSuccessfulPayment ? "btn-disabled" : "btn-pay"}
-                    disabled={isSuccessfulPayment}
+                    className={
+                      isProcessing || isSuccessfulPayment
+                        ? "btn-disabled"
+                        : "btn-pay"
+                    }
+                    disabled={isProcessing || isSuccessfulPayment}
                     onClick={() => makePaymentWithSavedCardFlow()}
                   >
-                    Pay with {consumerCartBrand}
-                    {consumerLast4Digits}
+                    {isProcessing ? (
+                      <>
+                        <span className="dots">
+                          <span className="dot"></span>
+                          <span className="dot"></span>
+                          <span className="dot"></span>
+                        </span>
+                      </>
+                    ) : (
+                      `Pay with ${consumerCartBrand} ${consumerLast4Digits}`
+                    )}
                   </button>
                 )}
               </div>
