@@ -1026,6 +1026,18 @@ fieldset {
     bottom: 1em;
   }
 
+  .open-details-btn {
+    right: 1em;
+    bottom: 1em;
+    width: 4em;
+    height: 4em;
+  }
+
+  .open-details-cart {
+    width: 4em;
+    height: 4em;
+  }
+
   .close-details-btn {
     top: -0.75em;
     right: -0.75em;
