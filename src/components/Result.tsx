@@ -8,7 +8,7 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
   return (
     <div className="checkout-content">
       <h3 className="big-screen-only">Payment Details</h3>
-      <div className="checkout-container">
+      <div className="description-container">
         <div>
           <p className="text-shadow">
             Congratulations, your order is already on the way!
@@ -20,9 +20,11 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
             </Link>
             .
           </p>
+        </div>
+        <div>
           <div className="btn-container">
             <div>
-              <h3 className="payment-amount">Save</h3>
+              <h3 className="or">Save</h3>
               <input
                 type="text"
                 value={orderId}
@@ -30,20 +32,12 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
               />
             </div>
             <div>
-              <h3 className="payment-amount">or</h3>
+              <h3 className="or">or</h3>
               <Link to={`/tracking/${orderId}`} target="_blank">
                 <button className="btn-pay">Check It Now!</button>
               </Link>
             </div>
           </div>
-          {/* 
-          <input
-            type="text"
-            value={inputOrderId}
-            onChange={handleInputChange}
-            placeholder="Enter your order ID here"
-            className="track-order-input"
-          /> */}
         </div>
       </div>
     </div>
