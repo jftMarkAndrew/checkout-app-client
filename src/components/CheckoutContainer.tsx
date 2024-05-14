@@ -89,6 +89,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
           sessionToken={sessionToken}
           totalAmount={totalAmount}
           currency={currency}
+          email={email}
         />
       ) : (
         <div className="checkout-container">

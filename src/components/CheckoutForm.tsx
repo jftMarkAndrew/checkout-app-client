@@ -17,12 +17,14 @@ interface CheckoutFormProps {
   sessionToken: string;
   totalAmount: number;
   currency: string;
+  email: string;
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   sessionToken,
   totalAmount,
   currency,
+  email,
 }) => {
   const unipaasRef = useRef<any>(null);
   const isInitialized = useRef(false);
@@ -42,6 +44,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [consumerLast4Digits, setConsumerLast4Digits] = useLocalStorage<
     string | null
   >("consumerLast4Digits", null);
+  const [consumerReturningEmail, setConsumerReturningEmail] = useLocalStorage<
+    string | null
+  >("consumerReturningEmail", null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleTokenSuccess = (token: OrderDetail) => {
@@ -79,6 +84,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId);
         setConsumerCartBrand(checkoutData.paymentOption.brand);
         setConsumerLast4Digits(checkoutData.paymentOption.last4digits);
+        setConsumerReturningEmail(email);
       }
       setSuccessfulPayment(true);
     }
@@ -204,31 +210,39 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 >
                   Pay now
                 </button>
-                {consumerPaymentOptionId && <h3 className="text-or">or</h3>}
-                {consumerPaymentOptionId && (
-                  <button
-                    type="button"
-                    className={
-                      isProcessing || isSuccessfulPayment
-                        ? "btn-disabled"
-                        : "btn-pay"
-                    }
-                    disabled={isProcessing || isSuccessfulPayment}
-                    onClick={() => makePaymentWithSavedCardFlow()}
-                  >
-                    {isProcessing ? (
-                      <>
-                        <span className="dots">
-                          <span className="dot"></span>
-                          <span className="dot"></span>
-                          <span className="dot"></span>
-                        </span>
-                      </>
-                    ) : (
-                      `Pay with ${consumerCartBrand} ${consumerLast4Digits}`
-                    )}
-                  </button>
-                )}
+                {consumerPaymentOptionId &&
+                  consumerCartBrand &&
+                  consumerLast4Digits &&
+                  consumerReturningEmail === email && (
+                    <h3 className="text-or">or</h3>
+                  )}
+                {consumerPaymentOptionId &&
+                  consumerCartBrand &&
+                  consumerLast4Digits &&
+                  consumerReturningEmail === email && (
+                    <button
+                      type="button"
+                      className={
+                        isProcessing || isSuccessfulPayment
+                          ? "btn-disabled"
+                          : "btn-pay"
+                      }
+                      disabled={isProcessing || isSuccessfulPayment}
+                      onClick={() => makePaymentWithSavedCardFlow()}
+                    >
+                      {isProcessing ? (
+                        <>
+                          <span className="dots">
+                            <span className="dot"></span>
+                            <span className="dot"></span>
+                            <span className="dot"></span>
+                          </span>
+                        </>
+                      ) : (
+                        `Pay with ${consumerCartBrand} ${consumerLast4Digits}`
+                      )}
+                    </button>
+                  )}
               </div>
             </form>
           </div>
