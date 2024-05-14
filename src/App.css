@@ -101,6 +101,10 @@ h6 {
   font-style: normal;
 }
 
+.payment-amount {
+  font-size: 1.25em;
+}
+
 a,
 a:visited {
   color: #306fad;
