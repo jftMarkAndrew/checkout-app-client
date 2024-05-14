@@ -1,6 +1,6 @@
 export const Loading = () => {
   return (
-    <div className="chekout-container">
+    <div className="checkout-container">
       <img
         src="/src/assets/icons/fav_icon_logo_unipaas.svg"
         width={216}
