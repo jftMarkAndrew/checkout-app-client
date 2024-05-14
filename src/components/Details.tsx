@@ -79,7 +79,7 @@ export const Details: React.FC<DetailsProps> = ({
             <IoCloseOutline
               size="2em"
               onClick={() => setShowDetails(false)}
-              className="close-details-cart"
+              className="close-details-cross"
             />
           </div>
           <h3 className="text-shadow">
