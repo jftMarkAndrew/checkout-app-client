@@ -5,12 +5,14 @@ import { Track } from "./components/Track";
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<StoreContainer />} />
-        <Route path="/tracking" element={<Track />} />
-        <Route path="/tracking/:orderId" element={<Track />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="content-grid">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<StoreContainer />} />
+          <Route path="/tracking" element={<Track />} />
+          <Route path="/tracking/:orderId" element={<Track />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
