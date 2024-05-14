@@ -1,18 +1,18 @@
-// StoreComponent.tsx
+// Store.tsx
 import React from "react";
-import { ItemComponent } from "./ItemComponent";
+import { Item } from "./Item";
 import { Product } from "../interfaces/Product";
 import { CartItem } from "../interfaces/CartItem";
 import { Currency } from "../consts/currencyCodes";
 
-interface StoreComponentProps {
+interface StoreProps {
   products: Product[];
   cart: CartItem[];
   currency: Currency;
   onAddToCart: (product: Product) => void;
 }
 
-export const StoreComponent: React.FC<StoreComponentProps> = ({
+export const Store: React.FC<StoreProps> = ({
   products,
   cart,
   currency,
@@ -27,7 +27,7 @@ export const StoreComponent: React.FC<StoreComponentProps> = ({
               item.product.id === product.id
           )?.quantity || 0;
         return (
-          <ItemComponent
+          <Item
             key={product.id}
             imageUrl={product.imageUrl}
             productName={product.name}

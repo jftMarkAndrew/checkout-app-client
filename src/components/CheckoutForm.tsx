@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
-import { ResultComponent } from "./ResultComponent";
-import { ErrorMessageComponent } from "./ErrorMessageComponent";
+import { Result } from "./Result";
+import { ErrorMessage } from "./ErrorMessage";
 import { OrderDetail } from "../interfaces/OrderDetail";
 import { OrderError } from "../interfaces/OrderError";
 import useLocalStorage from "use-local-storage";
@@ -192,11 +192,11 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ sessionToken }) => {
             </form>
           </div>
           <div className="error-container">
-            {showError && <ErrorMessageComponent errorType={errorMsg} />}
+            {showError && <ErrorMessage errorType={errorMsg} />}
           </div>
         </div>
       )}
-      {isSuccessfulPayment && <ResultComponent orderId={isOrderId} />}
+      {isSuccessfulPayment && <Result orderId={isOrderId} />}
     </div>
   );
 };

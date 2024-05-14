@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
-import { LogoComponent } from "./LogoComponent";
+import { Logo } from "./Logo";
 import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetail } from "../interfaces/OrderDetail";
 
-export const TrackComponent = () => {
+export const Track = () => {
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<OrderDetail | null>(null);
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export const TrackComponent = () => {
 
   return (
     <div>
-      <LogoComponent />
+      <Logo />
       <div className="tracking-container">
         <h1>Where is my order?</h1>
         <p>

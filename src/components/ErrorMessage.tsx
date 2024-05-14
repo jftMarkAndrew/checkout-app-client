@@ -1,10 +1,8 @@
-interface ErrorMessageComponentProps {
+interface ErrorMessageProps {
   errorType: "Insufficient Funds" | "Lost/Stolen" | string;
 }
 
-export const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
-  errorType,
-}) => {
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({ errorType }) => {
   let message = "Something went wrong. Give it another chance!";
 
   if (errorType === "Lost/Stolen") {

@@ -2,7 +2,7 @@ import validator from "validator";
 import { CartItem } from "../interfaces/CartItem";
 import { Currency, currencyCodes } from "../consts/currencyCodes";
 
-interface DetailsComponentProps {
+interface DetailsProps {
   cart: CartItem[];
   email: string;
   currency: Currency;
@@ -10,7 +10,7 @@ interface DetailsComponentProps {
   onContinue: () => void;
 }
 
-export const DetailsComponent: React.FC<DetailsComponentProps> = ({
+export const Details: React.FC<DetailsProps> = ({
   cart,
   email,
   currency,

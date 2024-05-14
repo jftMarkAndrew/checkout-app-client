@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { LogoComponent } from "./LogoComponent";
-import { StoreComponent } from "./StoreComponent";
-import { CheckoutComponent } from "./CheckoutComponent";
-import { DetailsComponent } from "./DetailsComponent";
+import { Logo } from "./Logo";
+import { Store } from "./Store";
+import { CheckoutContainer } from "./CheckoutContainer";
+import { Details } from "./Details";
 import { Product } from "../interfaces/Product";
 import { CartItem } from "../interfaces/CartItem";
 import { mockProducts } from "../consts/mockProducts";
@@ -11,7 +11,7 @@ import { CountryCode } from "../interfaces/CountryCode";
 
 const products: Product[] = mockProducts;
 
-export const ContainerComponent: React.FC = () => {
+export const StoreContainer: React.FC = () => {
   const [currency, setCurrency] = useState<Currency>(Currency.GBP);
   const [countryCode, setCountryCode] = useState("IL");
   const [showCheckout, setShowCheckout] = useState(false);
@@ -52,12 +52,12 @@ export const ContainerComponent: React.FC = () => {
 
   return (
     <>
-      <LogoComponent
+      <Logo
         onCurrencyChange={handleCurrencyChange}
         onCountryChange={handleCountryChange}
       />
       {!showCheckout && (
-        <StoreComponent
+        <Store
           products={products}
           cart={cart}
           currency={currency}
@@ -65,7 +65,7 @@ export const ContainerComponent: React.FC = () => {
         />
       )}
       {!showCheckout && cart.length > 0 && (
-        <DetailsComponent
+        <Details
           cart={cart}
           email={email}
           currency={currency}
@@ -74,7 +74,7 @@ export const ContainerComponent: React.FC = () => {
         />
       )}
       {showCheckout && (
-        <CheckoutComponent
+        <CheckoutContainer
           cart={cart}
           email={email}
           currency={currency}

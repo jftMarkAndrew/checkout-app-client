@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Currency, currencyCodes } from "../consts/currencyCodes";
 
-interface ItemComponentProps {
+interface ItemProps {
   imageUrl: string;
   productName: string;
   productPriceGBP: string;
@@ -10,7 +10,7 @@ interface ItemComponentProps {
   onAddItem: () => void;
 }
 
-export const ItemComponent: React.FC<ItemComponentProps> = ({
+export const Item: React.FC<ItemProps> = ({
   imageUrl,
   productName,
   productPriceGBP,

@@ -5,12 +5,12 @@ import { Currency } from "../consts/currencyCodes";
 import { CountryDropdown } from "./CountryDropdown";
 import { CountryCode } from "../interfaces/CountryCode";
 
-interface LogoComponentProps {
+interface LogoProps {
   onCurrencyChange?: (currency: Currency) => void;
   onCountryChange?: (code: CountryCode) => void;
 }
 
-export const LogoComponent: React.FC<LogoComponentProps> = ({
+export const Logo: React.FC<LogoProps> = ({
   onCurrencyChange,
   onCountryChange,
 }) => {

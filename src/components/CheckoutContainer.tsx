@@ -5,14 +5,14 @@ import { CartItem } from "../interfaces/CartItem";
 import { Currency, currencyCodes } from "../consts/currencyCodes";
 import { CountryCode } from "../interfaces/CountryCode";
 
-interface CheckoutComponentProps {
+interface CheckoutContainerProps {
   cart: CartItem[];
   email: string;
   currency: string;
   countryCode: CountryCode["code"];
 }
 
-export const CheckoutComponent: React.FC<CheckoutComponentProps> = ({
+export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   cart,
   email,
   currency,
