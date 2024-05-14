@@ -74,7 +74,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const storeConsumerPaymentOptionId = () => {
     if (checkoutData) {
-      console.log("Checkout data: " + checkoutData.paymentOption);
       if (isSaveCardChecked) {
         setConsumerPaymentOptionId(checkoutData.paymentOption.paymentOptionId);
         setConsumerCartBrand(checkoutData.paymentOption.brand);
