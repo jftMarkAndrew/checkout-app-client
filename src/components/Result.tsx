@@ -10,20 +10,14 @@ interface ResultProps {
 
 export const Result: React.FC<ResultProps> = ({ orderId }) => {
   const [copied, setCopied] = useState(false);
-  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(orderId);
       setCopied(true);
-      setTooltipVisible(true); // Show the tooltip
-      setTimeout(() => {
-        setCopied(false);
-        setTooltipVisible(false); // Hide the tooltip after 2 seconds
-      }, 2000);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy:", err);
-      setTooltipVisible(false);
     }
   };
 
@@ -47,14 +41,10 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
           <div>
             <h3 className="text-or">Save</h3>
             <input type="text" value={orderId} className="track-order-input" />
-            <Tippy
-              content={copied ? "Copied!" : "Click to copy"}
-              visible={tooltipVisible}
-            >
-              <MdContentCopy
-                className="copy-to-clipboard"
-                onClick={handleCopy}
-              />
+            <Tippy content={copied ? "Copied!" : "Click to copy"}>
+              <span className="copy-to-clipboard" onClick={handleCopy}>
+                <MdContentCopy />
+              </span>
             </Tippy>
           </div>
           <div>
@@ -68,5 +58,3 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
     </div>
   );
 };
-
-export default Result;
