@@ -152,7 +152,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
       </div>
       {!isSuccessfulPayment && (
         <div className="checkout-content">
-          <h3 className="big-screen-only">Payment Details</h3>
+          <h3 className="payment-amount">Payment Details</h3>
           <div className="checkout-container">
             <form id="payment-form">
               <div className="payment-field">
@@ -200,9 +200,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 >
                   Pay now
                 </button>
-                {consumerPaymentOptionId && (
-                  <h3 className="payment-amount">or</h3>
-                )}
+                {consumerPaymentOptionId && <h3 className="or">or</h3>}
                 {consumerPaymentOptionId && (
                   <button
                     type="button"
