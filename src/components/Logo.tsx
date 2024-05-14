@@ -4,6 +4,8 @@ import { CurrencyDropdown } from "./CurrencyDropdown";
 import { Currency } from "../consts/currencyCodes";
 import { CountryDropdown } from "./CountryDropdown";
 import { CountryCode } from "../interfaces/CountryCode";
+import { AiFillHome } from "react-icons/ai";
+import { MdDeliveryDining } from "react-icons/md";
 
 interface LogoProps {
   onCurrencyChange?: (currency: Currency) => void;
@@ -46,7 +48,7 @@ export const Logo: React.FC<LogoProps> = ({
       <div className="menu-container">
         <a href="/">
           <button className="btn-menu">
-            <img src="/src/assets/icons/home_icon.svg" alt="Home" />
+            <AiFillHome size="1.25em" title="Store" />
           </button>
         </a>
         {onCurrencyChange && (
@@ -57,7 +59,7 @@ export const Logo: React.FC<LogoProps> = ({
         )}
         <Link to="/tracking">
           <button className="btn-menu">
-            <img src="/src/assets/icons/cart_icon.svg" alt="Home" />
+            <MdDeliveryDining size="1.25em" title="Delivery" />
           </button>
         </Link>
       </div>
