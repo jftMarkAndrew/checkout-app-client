@@ -30,8 +30,8 @@ body {
 
 .content-grid {
   --padding-inline: 1rem;
-  --content-max-width: 960px;
-  --breakout-max-width: 1280px;
+  --content-max-width: 1080px;
+  --breakout-max-width: 1440px;
 
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
@@ -191,6 +191,7 @@ a:active {
   height: 9em;
   background-image: url("/img/minimal-923194_1920.jpg");
   background-position-y: 63em;
+  background-position-x: -12em;
   border-radius: 2em;
 }
 
@@ -212,8 +213,6 @@ a:active {
 
 .logo-title {
   padding-left: 1em;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -222,12 +221,12 @@ a:active {
 
   h1 {
     font-size: minmax(fit-content, 3vw);
-    line-height: 0;
+    line-height: 1em;
   }
 
   p {
     font-size: minmax(fit-content, 1vw);
-    line-height: 0;
+    line-height: 1em;
   }
 }
 
@@ -669,7 +668,13 @@ input[type="checkbox"]:checked + label {
   right: 3em;
   bottom: 6em;
   color: var(--text-color);
+  background-color: var(--background-color);
+  border-radius: 2em;
+  width: 14em;
+  aspect-ratio: 1 / 1;
   z-index: 1;
+  border: 1px var(--drop-shadow-mouseover) solid;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
 }
 
 .details-email-button {
@@ -863,10 +868,6 @@ fieldset {
     gap: 4em;
   }
 
-  .item-grid {
-    width: calc(50% - 1em);
-  }
-
   .big-screen-only {
     display: none;
   }
@@ -937,6 +938,11 @@ fieldset {
     height: 7em;
     filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
   }
+
+  .details-container {
+    right: calc(50% - 7em);
+    bottom: 0.5em;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -956,6 +962,10 @@ fieldset {
     gap: 0;
   }
 
+  .logo {
+    margin-bottom: 3em;
+  }
+
   .logo-title {
     position: absolute;
     z-index: 1;
@@ -965,6 +975,39 @@ fieldset {
 
     p {
       font-size: 3vw;
+    }
+  }
+
+  .menu-container {
+    left: 0;
+    right: 0;
+    bottom: -2.5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+  }
+
+  .btn-menu {
+    max-width: 2.25em;
+    max-height: 2.25em;
+    flex-shrink: 1;
+    border: 0;
+    border-radius: 50%;
+    color: var(--background-color);
+    background-color: var(--text-color);
+    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
+    transition: all 0.15s ease;
+
+    &:hover {
+      cursor: pointer;
+      filter: drop-shadow(var(--drop-shadow-mouseover) 0.22em 0.22em 0);
+    }
+
+    &:active {
+      cursor: pointer;
+      filter: drop-shadow(var(--drop-shadow-mouseover) 0.11em 0.11em 0);
     }
   }
 
