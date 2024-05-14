@@ -679,13 +679,13 @@ input[type="checkbox"]:checked + label {
 
   &:hover {
     cursor: pointer;
-    transform: scale(0.9);
+    transform: scale(0.966);
     filter: drop-shadow(var(--drop-shadow-default) 0.33em 0.33em 0);
   }
 
   &:active {
     cursor: pointer;
-    transform: scale(0.8);
+    transform: scale(0.9);
     filter: drop-shadow(var(--drop-shadow-default) 0.16em 0.16em 0);
   }
 }
@@ -703,13 +703,13 @@ input[type="checkbox"]:checked + label {
 
   &:hover {
     cursor: pointer;
-    transform: scale(0.875);
+    transform: scale(0.96);
     filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
   }
 
   &:active {
     cursor: pointer;
-    transform: scale(0.75);
+    transform: scale(0.9);
     filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
   }
 }
@@ -722,20 +722,9 @@ input[type="checkbox"]:checked + label {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: var(--background-color);
-  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
   transition: all 0.15s ease;
   z-index: 2;
   border: 1px var(--drop-shadow-mouseover) solid;
-
-  &:hover {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
-  }
-
-  &:active {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
-  }
   cursor: pointer;
 }
 
@@ -761,6 +750,7 @@ input[type="checkbox"]:checked + label {
   aspect-ratio: 1 / 1.2;
   z-index: 1;
   border: 1px var(--drop-shadow-mouseover) solid;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
 }
 
 .details-email-button {
