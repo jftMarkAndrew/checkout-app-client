@@ -62,18 +62,30 @@ export const Details: React.FC<DetailsProps> = ({
   return (
     <>
       {!showDetails && (
-        <div className="open-details-btn">
-          <MdLocalGroceryStore onClick={() => setShowDetails(true)} className="open-details-cart" />
+        <div className="open-details-btn" onClick={() => setShowDetails(true)}>
+          <MdLocalGroceryStore
+            onClick={() => setShowDetails(true)}
+            className="open-details-cart"
+          />
         </div>
       )}
 
       {showDetails && (
         <div className="details-container">
-          <IoCloseOutline size="2em" onClick={() => setShowDetails(false)} />
-          <h1 className="text-shadow">
-            {currency}
+          <div
+            className="close-details-btn"
+            onClick={() => setShowDetails(false)}
+          >
+            <IoCloseOutline
+              size="2em"
+              onClick={() => setShowDetails(false)}
+              className="close-details-cart"
+            />
+          </div>
+          <h3 className="text-shadow">
+            Total Amount: {currency}
             {total.toFixed(0)}
-          </h1>
+          </h3>
           <input
             type="email"
             value={email}
