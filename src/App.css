@@ -6,6 +6,7 @@
 :root {
   --background-color: #f4f3ef;
   --text-color: #121212;
+  --background-color-btn: #f4f3ef60;
   --drop-shadow-default: #12121224;
   --drop-shadow-mouseover: #12121236;
 }
@@ -13,6 +14,7 @@
 [data-theme="dark"] {
   --background-color: #2a2c34;
   --text-color: #f4f3ef;
+  --background-color-btn: #12121248;
   --drop-shadow-default: #12121248;
   --drop-shadow-mouseover: #12121272;
 }
@@ -658,6 +660,56 @@ input[type="checkbox"]:checked + label {
 
 /* details */
 
+.open-details-btn {
+  position: fixed;
+  right: 6em;
+  bottom: 6em;
+  width: 6em;
+  height: 6em;
+  z-index: 1;
+  color: var(--background-color);
+  background-color: var(--background-color-btn);
+  border-radius: 50%;
+  filter: drop-shadow(var(--drop-shadow-default) 0.5em 0.5em 0);
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+    filter: drop-shadow(var(--drop-shadow-default) 0.33em 0.33em 0);
+  }
+
+  &:active {
+    cursor: pointer;
+    transform: scale(0.8);
+    filter: drop-shadow(var(--drop-shadow-default) 0.16em 0.16em 0);
+  }
+}
+
+.open-details-cart {
+  position: absolute;
+  width: 6em;
+  height: 6em;
+  z-index: 2;
+  color: var(--text-color);
+  border-radius: 50%;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
+  transition: all 0.15s ease-in-out;
+  overflow: visible;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.875);
+    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
+  }
+
+  &:active {
+    cursor: pointer;
+    transform: scale(0.75);
+    filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
+  }
+}
+
 .details-container {
   position: fixed;
   display: flex;
@@ -666,7 +718,7 @@ input[type="checkbox"]:checked + label {
   align-items: center;
   gap: 1em;
   right: 3em;
-  bottom: 6em;
+  bottom: 3em;
   color: var(--text-color);
   background-color: var(--background-color);
   border-radius: 2em;
