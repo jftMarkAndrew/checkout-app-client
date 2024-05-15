@@ -80,7 +80,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
       .catch((error) => {
         console.error("Error fetching session token:", error);
       });
-  }, [totalAmount, email, currency, currencyCode, countryCode]);
+  }, [totalAmount, email, currency, countryCode]);
 
   return (
     <>
