@@ -40,7 +40,12 @@ export const Result: React.FC<ResultProps> = ({ orderId }) => {
         <div className="btn-container">
           <div>
             <h3 className="text-or">Save</h3>
-            <input type="text" value={orderId} className="track-order-input" />
+            <input
+              type="text"
+              value={orderId}
+              readOnly
+              className="track-order-input"
+            />
             <Tippy content={copied ? "Copied!" : "Click to copy"}>
               <span className="copy-to-clipboard" onClick={handleCopy}>
                 <MdContentCopy />
