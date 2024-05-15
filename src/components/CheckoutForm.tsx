@@ -196,7 +196,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 <h3>
                   Payment Amount:{" "}
                   <span className="payment-amount">
-                    {totalAmount}
+                    {totalAmount.toFixed(0)}
                     {currency}
                   </span>
                 </h3>
