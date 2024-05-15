@@ -51,6 +51,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const handleTokenSuccess = (token: OrderDetail) => {
     console.log("Token received:", token);
+    setCheckoutData(token);
+    setOrderId(token.authorizationId);
+    setSuccessfulPayment(true);
   };
 
   const handleSubmission = (data: OrderDetail) => {
@@ -66,13 +69,41 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const handleError = (error: OrderError) => {
     setErrorMsg(error.processor.processorDescription);
     setShowError(true);
-
-    const timer = setTimeout(() => {
-      setShowError(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
+    setTimeout(() => setShowError(false), 5000);
   };
+
+  const loadSDK = () => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.unipaas.com/unipaas.sdk.js";
+    script.onload = initializeSDK;
+    script.onerror = () => {
+      console.error("Failed to load Unipaas SDK.");
+      setTimeout(loadSDK, 5000);
+    };
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  };
+
+  const initializeSDK = () => {
+    if (window.Unipaas && !isInitialized.current && !isReadyForSDK) {
+      const unipaas = new window.Unipaas();
+      unipaas.usePolyfills();
+      unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
+      unipaas.on("OnTokenSuccess", handleTokenSuccess);
+      unipaas.on("onSubmission", handleSubmission);
+      unipaas.on("onSuccess", handleSuccess);
+      unipaas.on("onError", handleError);
+      unipaasRef.current = unipaas;
+      isInitialized.current = true;
+      setReadyForSDK(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!window.Unipaas || !isInitialized.current) {
+      loadSDK();
+    }
+  }, [sessionToken]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsSaveCardChecked(event.target.checked);
@@ -116,32 +147,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
     };
     checkElements();
   }, []);
-
-  useEffect(() => {
-    if (isReadyForSDK && !isInitialized.current) {
-      const script = document.createElement("script");
-      script.src = "https://cdn.unipaas.com/unipaas.sdk.js";
-      script.onload = () => {
-        if (window.Unipaas) {
-          const unipaas = new window.Unipaas();
-          unipaas.usePolyfills();
-          unipaas.initTokenize(sessionToken, cardConfig, btnConfig);
-
-          unipaas.on("OnTokenSuccess", handleTokenSuccess);
-          unipaas.on("onSubmission", handleSubmission);
-          unipaas.on("onSuccess", handleSuccess);
-          unipaas.on("onError", handleError);
-
-          unipaasRef.current = unipaas;
-          isInitialized.current = true;
-        }
-      };
-      document.body.appendChild(script);
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
-  }, [sessionToken, isInitialized, isReadyForSDK]);
 
   useEffect(() => {
     storeConsumerPaymentOptionId();
