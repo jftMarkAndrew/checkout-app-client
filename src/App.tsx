@@ -1,18 +1,34 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AppLayout } from "./components/AppLayout";
 import { StoreContainer } from "./components/StoreContainer";
+import { Cart } from "./components/Cart";
+import { CheckoutContainer } from "./components/CheckoutContainer";
 import { Track } from "./components/Track";
 
 export const App: React.FC = () => {
   return (
-    <div className="content-grid">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<StoreContainer />} />
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Navigate replace to="/store" />} />
+          <Route path="/store" element={<StoreContainer />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/checkout"
+            element={
+              <CheckoutContainer
+                cart={[]}
+                email={""}
+                currency={""}
+                countryCode={""}
+              />
+            }
+          />
           <Route path="/tracking" element={<Track />} />
           <Route path="/tracking/:orderId" element={<Track />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
