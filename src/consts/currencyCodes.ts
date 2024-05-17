@@ -1,13 +1,15 @@
-import { CurrencyCode } from "../interfaces/CurrencyCode";
+import { Currency, CurrencyCode, CurrencySymbol } from "../interfaces/Currency";
 
-export enum Currency {
-  GBP = "£",
-  USD = "$",
-  EUR = "€",
-}
-
-export const currencyCodes: CurrencyCode[] = [
-  { code: "GBP", symbol: Currency.GBP, approximateValue: 1 },
-  { code: "USD", symbol: Currency.USD, approximateValue: 1.25 },
-  { code: "EUR", symbol: Currency.EUR, approximateValue: 1.16 },
+export const currencyCodes: Currency[] = [
+  { code: CurrencyCode.GBP, symbol: CurrencySymbol.GBP, approximateValue: 1 },
+  {
+    code: CurrencyCode.USD,
+    symbol: CurrencySymbol.USD,
+    approximateValue: 1.25,
+  },
+  {
+    code: CurrencyCode.EUR,
+    symbol: CurrencySymbol.EUR,
+    approximateValue: 1.16,
+  },
 ];
