@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Currency, currencyCodes } from "../consts/currencyCodes";
+import { CurrencySymbol } from "../interfaces/Currency";
+import { currencyCodes } from "../consts/currencyCodes";
 
 interface ItemProps {
   imageUrl: string;
   productName: string;
   productPriceGBP: string;
-  currency: Currency;
+  currency: CurrencySymbol;
   quantity: number;
   onAddItem: () => void;
 }
@@ -22,9 +23,9 @@ export const Item: React.FC<ItemProps> = ({
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    return currency === Currency.GBP
+    return currency === CurrencySymbol.GBP
       ? setCost(+productPriceGBP)
-      : currency === Currency.USD
+      : currency === CurrencySymbol.USD
       ? setCost(+productPriceGBP * currencyCodes[1].approximateValue)
       : setCost(+productPriceGBP * currencyCodes[2].approximateValue);
   }, [currency, productPriceGBP]);
@@ -86,7 +87,8 @@ export const Item: React.FC<ItemProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - £{productPriceGBP}
+              {productName} - {currency}
+              {cost.toFixed(0)}
             </text>
           </g>
         }

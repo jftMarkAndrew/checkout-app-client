@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { CartItem } from "../interfaces/CartItem";
-import { Currency, currencyCodes } from "../consts/currencyCodes";
 import validator from "validator";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
+import { CurrencySymbol } from "../interfaces/Currency";
+import { currencyCodes } from "../consts/currencyCodes";
 
 interface DetailsProps {
   cart: CartItem[];
   email: string;
-  currency: Currency;
+  currency: CurrencySymbol;
   onEmailChange: (email: string) => void;
   onContinue: () => void;
 }
@@ -24,12 +25,12 @@ export const Details: React.FC<DetailsProps> = ({
 
   let total = 0;
 
-  currency === Currency.GBP
+  currency === CurrencySymbol.GBP
     ? (total = cart.reduce(
         (sum, item) => sum + item.product.priceGBP * item.quantity,
         0
       ))
-    : currency === Currency.USD
+    : currency === CurrencySymbol.USD
     ? (total = cart.reduce(
         (sum, item) =>
           sum +

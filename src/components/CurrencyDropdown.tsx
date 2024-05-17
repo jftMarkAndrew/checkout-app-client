@@ -1,31 +1,31 @@
 import { useState } from "react";
-import { Currency } from "../consts/currencyCodes";
 import useLocalStorage from "use-local-storage";
+import { CurrencyCode, CurrencySymbol } from "../interfaces/Currency";
 
 interface CurrencyDropdownProps {
-  onCurrencyChange: (currencyCode: Currency) => void;
+  onCurrencyChange: (currencySymbol: CurrencySymbol) => void;
 }
 
 export const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({
   onCurrencyChange,
 }) => {
-  const currencySymbols: Record<Currency, string> = {
-    [Currency.GBP]: "£",
-    [Currency.USD]: "$",
-    [Currency.EUR]: "€",
+  const currencySymbols: Record<CurrencyCode, CurrencySymbol> = {
+    [CurrencyCode.GBP]: CurrencySymbol.GBP,
+    [CurrencyCode.USD]: CurrencySymbol.USD,
+    [CurrencyCode.EUR]: CurrencySymbol.EUR,
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useLocalStorage<Currency>(
+  const [selectedCurrency, setSelectedCurrency] = useLocalStorage<CurrencyCode>(
     "selectedCurrency",
-    Currency.GBP
+    CurrencyCode.GBP
   );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleCurrencyChange = (currencyCode: Currency) => {
+  const handleCurrencyChange = (currencyCode: CurrencyCode) => {
     setSelectedCurrency(currencyCode);
-    onCurrencyChange(currencyCode);
+    onCurrencyChange(currencySymbols[currencyCode]);
     setIsOpen(false);
   };
 
@@ -40,7 +40,7 @@ export const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({
             <button
               className="btn-menu"
               key={code}
-              onClick={() => handleCurrencyChange(code as Currency)}
+              onClick={() => handleCurrencyChange(code as CurrencyCode)}
             >
               {symbol}
             </button>

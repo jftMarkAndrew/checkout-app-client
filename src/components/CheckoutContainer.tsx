@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
 import { Loading } from "./Loading";
 import { CartItem } from "../interfaces/CartItem";
-import { Currency, currencyCodes } from "../consts/currencyCodes";
 import { CountryCode } from "../interfaces/CountryCode";
+import { CurrencyCode, CurrencySymbol } from "../interfaces/Currency";
+import { currencyCodes } from "../consts/currencyCodes";
 
 interface CheckoutContainerProps {
   cart: CartItem[];
   email: string;
-  currency: string;
+  currency: CurrencySymbol;
   countryCode: CountryCode["code"];
 }
 
@@ -23,12 +24,12 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   let totalAmount = 0;
   let currencyCode = "GBP";
 
-  currency === Currency.GBP
+  currency === CurrencySymbol.GBP
     ? (totalAmount = cart.reduce(
         (sum, item) => sum + item.product.priceGBP * item.quantity,
         0
       ))
-    : currency === Currency.USD
+    : currency === CurrencySymbol.USD
     ? (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
@@ -46,11 +47,11 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
         0
       ));
 
-  currency === Currency.GBP
-    ? (currencyCode = "GBP")
-    : currency === Currency.USD
-    ? (currencyCode = "USD")
-    : (currencyCode = "EUR");
+  currency === CurrencySymbol.GBP
+    ? (currencyCode = CurrencyCode.GBP)
+    : currency === CurrencySymbol.USD
+    ? (currencyCode = CurrencyCode.USD)
+    : (currencyCode = CurrencyCode.EUR);
 
   useEffect(() => {
     const postData = {
@@ -80,7 +81,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
       .catch((error) => {
         console.error("Error fetching session token:", error);
       });
-  }, [totalAmount, email, currency, countryCode]);
+  }, [totalAmount, email, currency, countryCode, currencyCode]);
 
   return (
     <>

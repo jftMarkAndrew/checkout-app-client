@@ -5,6 +5,7 @@ import { StoreContainer } from "./components/StoreContainer";
 import { Cart } from "./components/Cart";
 import { CheckoutContainer } from "./components/CheckoutContainer";
 import { Track } from "./components/Track";
+import { CurrencySymbol } from "./interfaces/Currency";
 
 export const App: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ export const App: React.FC = () => {
               <CheckoutContainer
                 cart={[]}
                 email={""}
-                currency={""}
+                currency={CurrencySymbol.GBP}
                 countryCode={""}
               />
             }

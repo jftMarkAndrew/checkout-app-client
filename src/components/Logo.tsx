@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
-import { Currency } from "../consts/currencyCodes";
 import { CountryDropdown } from "./CountryDropdown";
 import { CountryCode } from "../interfaces/CountryCode";
 import { AiFillHome } from "react-icons/ai";
 import { MdDeliveryDining } from "react-icons/md";
+import { CurrencySymbol } from "../interfaces/Currency";
 
 interface LogoProps {
-  onCurrencyChange?: (currency: Currency) => void;
+  onCurrencyChange?: (currency: CurrencySymbol) => void;
   onCountryChange?: (code: CountryCode) => void;
 }
 

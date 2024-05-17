@@ -3,12 +3,12 @@ import React from "react";
 import { Item } from "./Item";
 import { Product } from "../interfaces/Product";
 import { CartItem } from "../interfaces/CartItem";
-import { Currency } from "../consts/currencyCodes";
+import { CurrencySymbol } from "../interfaces/Currency";
 
 interface StoreProps {
   products: Product[];
   cart: CartItem[];
-  currency: Currency;
+  currency: CurrencySymbol;
   onAddToCart: (product: Product) => void;
 }
 

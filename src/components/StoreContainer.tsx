@@ -6,20 +6,23 @@ import { Details } from "./Details";
 import { Product } from "../interfaces/Product";
 import { CartItem } from "../interfaces/CartItem";
 import { mockProducts } from "../consts/mockProducts";
-import { Currency } from "../consts/currencyCodes";
 import { CountryCode } from "../interfaces/CountryCode";
+import { CurrencySymbol } from "../interfaces/Currency";
+import { countryCodes } from "../consts/countryCodes";
 
 const products: Product[] = mockProducts;
 
 export const StoreContainer: React.FC = () => {
-  const [currency, setCurrency] = useState<Currency>(Currency.GBP);
-  const [countryCode, setCountryCode] = useState("IL");
+  const [currencySymbol, setCurrencySymbol] = useState<CurrencySymbol>(
+    CurrencySymbol.GBP
+  );
+  const [countryCode, setCountryCode] = useState(countryCodes[0].code);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [email, setEmail] = useState("");
 
-  const handleCurrencyChange = (currency: Currency) => {
-    setCurrency(currency);
+  const handleCurrencyChange = (currency: CurrencySymbol) => {
+    setCurrencySymbol(currency);
   };
 
   const handleCountryChange = (code: CountryCode) => {
@@ -60,7 +63,7 @@ export const StoreContainer: React.FC = () => {
         <Store
           products={products}
           cart={cart}
-          currency={currency}
+          currency={currencySymbol}
           onAddToCart={handleAddToCart}
         />
       )}
@@ -68,7 +71,7 @@ export const StoreContainer: React.FC = () => {
         <Details
           cart={cart}
           email={email}
-          currency={currency}
+          currency={currencySymbol}
           onEmailChange={handleEmailChange}
           onContinue={proceedToCheckout}
         />
@@ -77,7 +80,7 @@ export const StoreContainer: React.FC = () => {
         <CheckoutContainer
           cart={cart}
           email={email}
-          currency={currency}
+          currency={currencySymbol}
           countryCode={countryCode}
         />
       )}
