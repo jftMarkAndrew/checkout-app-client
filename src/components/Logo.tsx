@@ -3,6 +3,7 @@ import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { CountryDropdown } from "./CountryDropdown";
 import { AiFillHome } from "react-icons/ai";
+import { MdLocalGroceryStore } from "react-icons/md";
 import { MdDeliveryDining } from "react-icons/md";
 
 export const Logo: React.FC = () => {
@@ -36,18 +37,23 @@ export const Logo: React.FC = () => {
         <Toggle />
       </div>
       <div className="menu-container">
-        <a href="/">
+        <Link to="/store">
           <button className="btn-menu">
             <AiFillHome size="1.25em" title="Store" />
           </button>
-        </a>
-        <CurrencyDropdown />
-        <CountryDropdown />
+        </Link>
+        <Link to="/cart">
+          <button className="btn-menu">
+            <MdLocalGroceryStore size="1.25em" title="Cart" />
+          </button>
+        </Link>
         <Link to="/tracking">
           <button className="btn-menu">
             <MdDeliveryDining size="1.25em" title="Delivery" />
           </button>
         </Link>
+        <CurrencyDropdown />
+        <CountryDropdown />
       </div>
     </div>
   );
