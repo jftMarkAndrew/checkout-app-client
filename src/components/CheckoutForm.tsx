@@ -6,6 +6,7 @@ import { ErrorMessage } from "./ErrorMessage";
 import { OrderDetail } from "../interfaces/OrderDetail";
 import { OrderError } from "../interfaces/OrderError";
 import useLocalStorage from "use-local-storage";
+import { useCurrencyContext } from "../context/CurrencyContext";
 
 declare global {
   interface Window {
@@ -16,16 +17,15 @@ declare global {
 interface CheckoutFormProps {
   sessionToken: string;
   totalAmount: number;
-  currency: string;
   email: string;
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   sessionToken,
   totalAmount,
-  currency,
   email,
 }) => {
+  const { currency } = useCurrencyContext();
   const unipaasRef = useRef<any>(null);
   const isInitialized = useRef(false);
   const [checkoutData, setCheckoutData] = useState<OrderDetail | null>(null);
