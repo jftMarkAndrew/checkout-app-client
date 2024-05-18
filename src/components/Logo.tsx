@@ -2,20 +2,10 @@ import { Link } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { CountryDropdown } from "./CountryDropdown";
-import { CountryCode } from "../interfaces/CountryCode";
 import { AiFillHome } from "react-icons/ai";
 import { MdDeliveryDining } from "react-icons/md";
-import { CurrencySymbol } from "../interfaces/Currency";
 
-interface LogoProps {
-  onCurrencyChange?: (currency: CurrencySymbol) => void;
-  onCountryChange?: (code: CountryCode) => void;
-}
-
-export const Logo: React.FC<LogoProps> = ({
-  onCurrencyChange,
-  onCountryChange,
-}) => {
+export const Logo: React.FC = () => {
   return (
     <div className="logo">
       <div className="logo-container">
@@ -51,12 +41,8 @@ export const Logo: React.FC<LogoProps> = ({
             <AiFillHome size="1.25em" title="Store" />
           </button>
         </a>
-        {onCurrencyChange && (
-          <CurrencyDropdown onCurrencyChange={onCurrencyChange} />
-        )}
-        {onCountryChange && (
-          <CountryDropdown onCountryChange={onCountryChange} />
-        )}
+        <CurrencyDropdown />
+        <CountryDropdown />
         <Link to="/tracking">
           <button className="btn-menu">
             <MdDeliveryDining size="1.25em" title="Delivery" />
