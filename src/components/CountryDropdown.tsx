@@ -1,33 +1,23 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useCountryContext } from "../context/CountryContext";
 import { CountryCode } from "../interfaces/CountryCode";
 import { countryCodes } from "../consts/countryCodes";
-import useLocalStorage from "use-local-storage";
 
-interface CountryDropdownProps {
-  onCountryChange: (code: CountryCode) => void;
-}
-
-export const CountryDropdown: React.FC<CountryDropdownProps> = ({
-  onCountryChange,
-}) => {
+export const CountryDropdown: React.FC = () => {
+  const { country, updateCountry } = useCountryContext();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useLocalStorage<CountryCode>(
-    "selectedCountry",
-    countryCodes[0]
-  );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleSelectCountry = (country: CountryCode) => {
-    setSelectedCountry(country);
-    onCountryChange(country);
+  const handleSelectCountry = (selectedCountry: CountryCode) => {
+    updateCountry(selectedCountry);
     setIsOpen(false);
   };
 
   return (
     <div>
       <button className="btn-menu" onClick={toggleDropdown}>
-        {selectedCountry.code}
+        {country ? country.code : "Loading..."}
       </button>
       {isOpen && (
         <ul className="countries-dropdown">
