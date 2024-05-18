@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
-import { StoreContainer } from "./components/StoreContainer";
+import { Store } from "./components/Store";
 import { Cart } from "./components/Cart";
 import { CheckoutContainer } from "./components/CheckoutContainer";
 import { Track } from "./components/Track";
@@ -12,7 +12,7 @@ export const App: React.FC = () => {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Navigate replace to="/store" />} />
-          <Route path="/store" element={<StoreContainer />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/checkout"
