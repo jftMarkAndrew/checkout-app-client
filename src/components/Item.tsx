@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { CurrencySymbol } from "../interfaces/Currency";
-import { currencyCodes } from "../consts/currencyCodes";
+import { CurrencyCode } from "../interfaces/Currency";
+import { currencyCodes, currencySymbols } from "../consts/currencyCodes";
+import { useCurrencyContext } from "../context/CurrencyContext";
 
 interface ItemProps {
   imageUrl: string;
   productName: string;
   productPriceGBP: string;
-  currency: CurrencySymbol;
   quantity: number;
   onAddItem: () => void;
 }
@@ -15,17 +15,17 @@ export const Item: React.FC<ItemProps> = ({
   imageUrl,
   productName,
   productPriceGBP,
-  currency,
   quantity,
   onAddItem,
 }) => {
+  const { currency } = useCurrencyContext();
   const [hover, setHover] = useState(false);
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    return currency === CurrencySymbol.GBP
+    return currency === CurrencyCode.GBP
       ? setCost(+productPriceGBP)
-      : currency === CurrencySymbol.USD
+      : currency === CurrencyCode.USD
       ? setCost(+productPriceGBP * currencyCodes[1].approximateValue)
       : setCost(+productPriceGBP * currencyCodes[2].approximateValue);
   }, [currency, productPriceGBP]);
@@ -70,7 +70,7 @@ export const Item: React.FC<ItemProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - {currency}
+              {productName} - {currency ? currencySymbols[currency] : ""}
               {cost.toFixed(0)}
             </text>
           </g>
@@ -87,7 +87,7 @@ export const Item: React.FC<ItemProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - {currency}
+              {productName} - {currency ? currencySymbols[currency] : ""}
               {cost.toFixed(0)}
             </text>
           </g>
