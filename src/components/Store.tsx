@@ -1,36 +1,24 @@
-// Store.tsx
 import React from "react";
-import { Item } from "./Item";
-import { Product } from "../interfaces/Product";
-import { CartItem } from "../interfaces/CartItem";
+import { Item } from "../components/Item";
+import { useItemContext } from "../context/ItemContext";
+import { useCartContext } from "../context/CartContext";
 
-interface StoreProps {
-  products: Product[];
-  cart: CartItem[];
-  onAddToCart: (product: Product) => void;
-}
+export const Store: React.FC = () => {
+  const { items } = useItemContext();
+  const { cart, addToCart } = useCartContext();
 
-export const Store: React.FC<StoreProps> = ({
-  products,
-  cart,
-  onAddToCart,
-}) => {
   return (
     <div className="store-container">
-      {products.map((product) => {
+      {items.map((item) => {
         const quantity =
-          cart.find(
-            (item: { product: { id: number } }) =>
-              item.product.id === product.id
-          )?.quantity || 0;
+          cart.find((cartItem) => cartItem.product.id === item.id)?.quantity ||
+          0;
         return (
           <Item
-            key={product.id}
-            imageUrl={product.imageUrl}
-            productName={product.name}
-            productPriceGBP={product.priceGBP.toFixed(0)}
+            key={item.id}
+            item={item}
             quantity={quantity}
-            onAddItem={() => onAddToCart(product)}
+            onAddItem={() => addToCart(item)}
           />
         );
       })}

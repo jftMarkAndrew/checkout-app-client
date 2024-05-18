@@ -1,34 +1,28 @@
-import { useEffect, useState } from "react";
-import { CurrencyCode } from "../interfaces/Currency";
-import { currencyCodes, currencySymbols } from "../consts/currencyCodes";
+// src/components/Item.tsx
+import React, { useEffect, useState } from "react";
+import { Item as ItemType } from "../interfaces/Item";
 import { useCurrencyContext } from "../context/CurrencyContext";
+import { currencySymbols } from "../consts/currencyCodes";
 
 interface ItemProps {
-  imageUrl: string;
-  productName: string;
-  productPriceGBP: string;
+  item: ItemType;
   quantity: number;
   onAddItem: () => void;
 }
 
-export const Item: React.FC<ItemProps> = ({
-  imageUrl,
-  productName,
-  productPriceGBP,
-  quantity,
-  onAddItem,
-}) => {
+export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
   const { currency } = useCurrencyContext();
   const [hover, setHover] = useState(false);
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    return currency === CurrencyCode.GBP
-      ? setCost(+productPriceGBP)
-      : currency === CurrencyCode.USD
-      ? setCost(+productPriceGBP * currencyCodes[1].approximateValue)
-      : setCost(+productPriceGBP * currencyCodes[2].approximateValue);
-  }, [currency, productPriceGBP]);
+    const convertPrice = () => {
+      const conversionRate =
+        currency === "USD" ? 1.4 : currency === "EUR" ? 1.2 : 1;
+      return item.defaultAmount * conversionRate;
+    };
+    setCost(convertPrice());
+  }, [currency, item.defaultAmount]);
 
   return (
     <div
@@ -52,7 +46,7 @@ export const Item: React.FC<ItemProps> = ({
           </clipPath>
         </defs>
         <image
-          href={imageUrl}
+          href={item.imageUrl}
           width="100%"
           height="100%"
           clipPath="url(#clipShape)"
@@ -70,7 +64,7 @@ export const Item: React.FC<ItemProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - {currency ? currencySymbols[currency] : ""}
+              {item.name} - {currency ? currencySymbols[currency] : ""}
               {cost.toFixed(0)}
             </text>
           </g>
@@ -87,7 +81,7 @@ export const Item: React.FC<ItemProps> = ({
               textAnchor="middle"
               className="text-shadow"
             >
-              {productName} - {currency ? currencySymbols[currency] : ""}
+              {item.name} - {currency ? currencySymbols[currency] : ""}
               {cost.toFixed(0)}
             </text>
           </g>
