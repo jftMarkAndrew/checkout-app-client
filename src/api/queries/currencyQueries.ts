@@ -1,28 +1,40 @@
-// src/api/queries/currencyQueries.ts
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { CurrencySymbol } from "../../interfaces/Currency";
 import axios from "axios";
+import { CurrencyCode } from "../../interfaces/Currency";
 
-const fetchCurrency = async () => {
-  // Assuming you have an endpoint to fetch the initial currency
-  const response = await axios.get("/api/currency");
+interface FetchCurrencyResponse {
+  currency: CurrencyCode;
+}
+
+const fetchCurrency = async (): Promise<CurrencyCode> => {
+  const response = await axios.get<FetchCurrencyResponse>(
+    "http://localhost:3000/settings/currency"
+  );
   return response.data.currency;
 };
 
-const updateCurrency = async (currency: CurrencySymbol) => {
-  // Assuming you have an endpoint to update the currency
-  const response = await axios.post("/api/currency", { currency });
+const updateCurrency = async (
+  currency: CurrencyCode
+): Promise<CurrencyCode> => {
+  const response = await axios.post<FetchCurrencyResponse>(
+    "http://localhost:3000/settings/currency",
+    { currency }
+  );
   return response.data.currency;
 };
 
 export const useCurrency = () => {
-  return useQuery(["currency"], fetchCurrency);
+  return useQuery<CurrencyCode, Error>({
+    queryKey: ["currency"],
+    queryFn: fetchCurrency,
+  });
 };
 
 export const useUpdateCurrency = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(updateCurrency, {
+  return useMutation<CurrencyCode, Error, CurrencyCode>({
+    mutationFn: updateCurrency,
     onSuccess: (newCurrency) => {
       queryClient.setQueryData(["currency"], newCurrency);
     },
