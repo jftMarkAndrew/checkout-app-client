@@ -2,34 +2,33 @@ import { useEffect, useState } from "react";
 import { CheckoutForm } from "./CheckoutForm";
 import { Loading } from "./Loading";
 import { CartItem } from "../interfaces/CartItem";
-import { CountryCode } from "../interfaces/CountryCode";
-import { CurrencyCode, CurrencySymbol } from "../interfaces/Currency";
+import { CurrencyCode } from "../interfaces/Currency";
 import { currencyCodes } from "../consts/currencyCodes";
+import { useCurrencyContext } from "../context/CurrencyContext";
+import { useCountryContext } from "../context/CountryContext";
 
 interface CheckoutContainerProps {
   cart: CartItem[];
   email: string;
-  currency: CurrencySymbol;
-  countryCode: CountryCode["code"];
 }
 
 export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
   cart,
   email,
-  currency,
-  countryCode,
 }) => {
+  const { currency } = useCurrencyContext();
+  const { country } = useCountryContext();
   const [sessionToken, setSessionToken] = useState("");
 
   let totalAmount = 0;
   let currencyCode = "GBP";
 
-  currency === CurrencySymbol.GBP
+  currency === CurrencyCode.GBP
     ? (totalAmount = cart.reduce(
         (sum, item) => sum + item.product.priceGBP * item.quantity,
         0
       ))
-    : currency === CurrencySymbol.USD
+    : currency === CurrencyCode.USD
     ? (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
@@ -47,9 +46,9 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
         0
       ));
 
-  currency === CurrencySymbol.GBP
+  currency === CurrencyCode.GBP
     ? (currencyCode = CurrencyCode.GBP)
-    : currency === CurrencySymbol.USD
+    : currency === CurrencyCode.USD
     ? (currencyCode = CurrencyCode.USD)
     : (currencyCode = CurrencyCode.EUR);
 
@@ -57,9 +56,11 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
     const postData = {
       amount: totalAmount,
       currency: currencyCode,
-      country: countryCode,
+      country: country.code,
       email: email,
     };
+
+    console.log(postData);
 
     fetch("http://localhost:3000/checkout/session-token", {
       method: "POST",
@@ -81,7 +82,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
       .catch((error) => {
         console.error("Error fetching session token:", error);
       });
-  }, [totalAmount, email, currency, countryCode, currencyCode]);
+  }, [totalAmount, email, currencyCode, country]);
 
   return (
     <>
@@ -89,7 +90,6 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
         <CheckoutForm
           sessionToken={sessionToken}
           totalAmount={totalAmount}
-          currency={currency}
           email={email}
         />
       ) : (
