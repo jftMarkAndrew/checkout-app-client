@@ -6,6 +6,15 @@ export const Cart: React.FC = () => {
   const { cart, removeFromCart, clearCart } = useCartContext();
   const { currency } = useCurrencyContext();
 
+  const getTotalPrice = () => {
+    return cart
+      .reduce((total, cartItem) => {
+        const price = cartItem.product.defaultAmount;
+        return total + price * cartItem.quantity;
+      }, 0)
+      .toFixed(2);
+  };
+
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
@@ -28,6 +37,12 @@ export const Cart: React.FC = () => {
               </li>
             ))}
           </ul>
+          <div>
+            <strong>
+              Total: {currency ? currencySymbols[currency] : ""}
+              {getTotalPrice()}
+            </strong>
+          </div>
           <button onClick={clearCart}>Clear Cart</button>
         </>
       )}
