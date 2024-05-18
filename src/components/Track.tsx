@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
-import { Logo } from "./Logo";
 import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetail } from "../interfaces/OrderDetail";
 
@@ -47,61 +45,58 @@ export const Track = () => {
   };
 
   return (
-    <div>
-      <Logo />
-      <div className="tracking-container">
-        <h1>Where is my order?</h1>
-        <p>
-          You can check the status of your purchase using the tracking number
-          you received after successful payment.
-        </p>
-        <div>
-          <input
-            type="text"
-            value={inputOrderId}
-            onChange={handleInputChange}
-            placeholder="Enter your order ID here"
-            className="track-order-input"
-          />
-          <button className="btn-pay" onClick={handleTrackOrder}>
-            Track Order
-          </button>
-        </div>
-        {orderDetails && (
-          <table className="track-table">
-            <tbody>
-              <tr>
-                <th>Date</th>
-                <td>
-                  {new Date(orderDetails.createdAt).toLocaleDateString("en-GB")}
-                </td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>
-                  {orderDetails.consumer.email.replace(/^(.{3})[^@]*/, "$1***")}
-                </td>
-              </tr>
-              <tr>
-                <th>Card Details</th>
-                <td>{`${orderDetails.paymentOption.brand} **** **** **** ${orderDetails.paymentOption.last4digits}`}</td>
-              </tr>
-              <tr>
-                <th>Amount</th>
-                <td>{`${orderDetails.amount} ${orderDetails.currency}`}</td>
-              </tr>
-              <tr>
-                <th>Country</th>
-                <td>{orderDetails.consumer.shippingAddress.country}</td>
-              </tr>
-              <tr>
-                <th>Status</th>
-                <td>{orderDetails.authorizationStatus}</td>
-              </tr>
-            </tbody>
-          </table>
-        )}
+    <div className="tracking-container">
+      <h1>Where is my order?</h1>
+      <p>
+        You can check the status of your purchase using the tracking number you
+        received after successful payment.
+      </p>
+      <div>
+        <input
+          type="text"
+          value={inputOrderId}
+          onChange={handleInputChange}
+          placeholder="Enter your order ID here"
+          className="track-order-input"
+        />
+        <button className="btn-pay" onClick={handleTrackOrder}>
+          Track Order
+        </button>
       </div>
+      {orderDetails && (
+        <table className="track-table">
+          <tbody>
+            <tr>
+              <th>Date</th>
+              <td>
+                {new Date(orderDetails.createdAt).toLocaleDateString("en-GB")}
+              </td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>
+                {orderDetails.consumer.email.replace(/^(.{3})[^@]*/, "$1***")}
+              </td>
+            </tr>
+            <tr>
+              <th>Card Details</th>
+              <td>{`${orderDetails.paymentOption.brand} **** **** **** ${orderDetails.paymentOption.last4digits}`}</td>
+            </tr>
+            <tr>
+              <th>Amount</th>
+              <td>{`${orderDetails.amount} ${orderDetails.currency}`}</td>
+            </tr>
+            <tr>
+              <th>Country</th>
+              <td>{orderDetails.consumer.shippingAddress.country}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{orderDetails.authorizationStatus}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
