@@ -5,7 +5,6 @@ import { StoreContainer } from "./components/StoreContainer";
 import { Cart } from "./components/Cart";
 import { CheckoutContainer } from "./components/CheckoutContainer";
 import { Track } from "./components/Track";
-import { CurrencySymbol } from "./interfaces/Currency";
 
 export const App: React.FC = () => {
   return (
@@ -17,14 +16,7 @@ export const App: React.FC = () => {
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/checkout"
-            element={
-              <CheckoutContainer
-                cart={[]}
-                email={""}
-                currency={CurrencySymbol.GBP}
-                countryCode={""}
-              />
-            }
+            element={<CheckoutContainer cart={[]} email={""} />}
           />
           <Route path="/tracking" element={<Track />} />
           <Route path="/tracking/:orderId" element={<Track />} />
