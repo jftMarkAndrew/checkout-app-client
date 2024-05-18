@@ -25,14 +25,14 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
 
   currency === CurrencyCode.GBP
     ? (totalAmount = cart.reduce(
-        (sum, item) => sum + item.product.priceGBP * item.quantity,
+        (sum, item) => sum + item.product.defaultAmount * item.quantity,
         0
       ))
     : currency === CurrencyCode.USD
     ? (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.priceGBP *
+          item.product.defaultAmount *
             currencyCodes[1].approximateValue *
             item.quantity,
         0
@@ -40,7 +40,7 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
     : (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.priceGBP *
+          item.product.defaultAmount *
             currencyCodes[2].approximateValue *
             item.quantity,
         0
