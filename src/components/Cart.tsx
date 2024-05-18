@@ -1,6 +1,6 @@
 import { useCartContext } from "../context/CartContext";
 import { useCurrencyContext } from "../context/CurrencyContext";
-import { currencySymbols } from "../consts/currencyCodes";
+import { currencySymbols, currencyValues } from "../consts/currencyCodes";
 
 export const Cart: React.FC = () => {
   const { cart, removeFromCart, clearCart } = useCartContext();
@@ -9,7 +9,7 @@ export const Cart: React.FC = () => {
   const getTotalPrice = () => {
     return cart
       .reduce((total, cartItem) => {
-        const price = cartItem.product.defaultAmount;
+        const price = cartItem.product.defaultAmount * currencyValues[currency];
         return total + price * cartItem.quantity;
       }, 0)
       .toFixed(2);
@@ -28,7 +28,9 @@ export const Cart: React.FC = () => {
                 <span>
                   {cartItem.product.name} -{" "}
                   {currency ? currencySymbols[currency] : ""}
-                  {cartItem.product.defaultAmount.toFixed(2)}
+                  {(
+                    cartItem.product.defaultAmount * currencyValues[currency]
+                  ).toFixed(2)}
                 </span>
                 <span>Quantity: {cartItem.quantity}</span>
                 <button onClick={() => removeFromCart(cartItem.product.id)}>

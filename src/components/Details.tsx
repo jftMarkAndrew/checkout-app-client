@@ -1,10 +1,10 @@
-/* import { useState } from "react";
+import { useState } from "react";
 import { CartItem } from "../interfaces/CartItem";
 import validator from "validator";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
 import { CurrencyCode } from "../interfaces/Currency";
-import { currencyCodes } from "../consts/currencyCodes";
+import { currencyValues } from "../consts/currencyCodes";
 import { useCurrencyContext } from "../context/CurrencyContext";
 
 interface DetailsProps {
@@ -34,17 +34,13 @@ export const Details: React.FC<DetailsProps> = ({
     ? (total = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.defaultAmount *
-            currencyCodes[1].approximateValue *
-            item.quantity,
+          item.product.defaultAmount * currencyValues[currency] * item.quantity,
         0
       ))
     : (total = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.defaultAmount *
-            currencyCodes[2].approximateValue *
-            item.quantity,
+          item.product.defaultAmount * currencyValues[currency] * item.quantity,
         0
       ));
 
@@ -107,4 +103,3 @@ export const Details: React.FC<DetailsProps> = ({
     </>
   );
 };
- */

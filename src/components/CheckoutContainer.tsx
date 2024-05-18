@@ -3,7 +3,7 @@ import { CheckoutForm } from "./CheckoutForm";
 import { Loading } from "./Loading";
 import { CartItem } from "../interfaces/CartItem";
 import { CurrencyCode } from "../interfaces/Currency";
-import { currencyCodes } from "../consts/currencyCodes";
+import { currencyValues } from "../consts/currencyCodes";
 import { useCurrencyContext } from "../context/CurrencyContext";
 import { useCountryContext } from "../context/CountryContext";
 
@@ -32,17 +32,13 @@ export const CheckoutContainer: React.FC<CheckoutContainerProps> = ({
     ? (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.defaultAmount *
-            currencyCodes[1].approximateValue *
-            item.quantity,
+          item.product.defaultAmount * currencyValues[currency] * item.quantity,
         0
       ))
     : (totalAmount = cart.reduce(
         (sum, item) =>
           sum +
-          item.product.defaultAmount *
-            currencyCodes[2].approximateValue *
-            item.quantity,
+          item.product.defaultAmount * currencyValues[currency] * item.quantity,
         0
       ));
 

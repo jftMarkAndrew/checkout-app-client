@@ -1,8 +1,7 @@
-// src/components/Item.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Item as ItemType } from "../interfaces/Item";
 import { useCurrencyContext } from "../context/CurrencyContext";
-import { currencySymbols } from "../consts/currencyCodes";
+import { currencySymbols, currencyValues } from "../consts/currencyCodes";
 
 interface ItemProps {
   item: ItemType;
@@ -17,8 +16,7 @@ export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
 
   useEffect(() => {
     const convertPrice = () => {
-      const conversionRate =
-        currency === "USD" ? 1.4 : currency === "EUR" ? 1.2 : 1;
+      const conversionRate = currencyValues[currency];
       return item.defaultAmount * conversionRate;
     };
     setCost(convertPrice());

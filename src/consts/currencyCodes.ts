@@ -19,3 +19,9 @@ export const currencySymbols: Record<CurrencyCode, string> = {
   [CurrencyCode.USD]: CurrencySymbol.USD,
   [CurrencyCode.EUR]: CurrencySymbol.EUR,
 };
+
+export const currencyValues: Record<CurrencyCode, number> = {
+  [CurrencyCode.GBP]: 1,
+  [CurrencyCode.USD]: 1.25,
+  [CurrencyCode.EUR]: 1.16,
+};
