@@ -13,3 +13,9 @@ export const currencyCodes: Currency[] = [
     approximateValue: 1.16,
   },
 ];
+
+export const currencySymbols: Record<CurrencyCode, string> = {
+  [CurrencyCode.GBP]: CurrencySymbol.GBP,
+  [CurrencyCode.USD]: CurrencySymbol.USD,
+  [CurrencyCode.EUR]: CurrencySymbol.EUR,
+};
