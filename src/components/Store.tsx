@@ -1,4 +1,3 @@
-import React from "react";
 import { Item } from "../components/Item";
 import { useItemContext } from "../context/ItemContext";
 import { useCartContext } from "../context/CartContext";

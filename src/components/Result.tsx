@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdContentCopy } from "react-icons/md";
 import Tippy from "@tippyjs/react";
