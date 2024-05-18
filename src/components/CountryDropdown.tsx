@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useCountryContext } from "../context/CountryContext";
 import { CountryCode } from "../interfaces/CountryCode";
-import { countryCodes } from "../consts/countryCodes";
 
 export const CountryDropdown: React.FC = () => {
-  const { country, updateCountry } = useCountryContext();
+  const { country, countries, updateCountry } = useCountryContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -21,7 +20,7 @@ export const CountryDropdown: React.FC = () => {
       </button>
       {isOpen && (
         <ul className="countries-dropdown">
-          {countryCodes.map((country) => (
+          {countries.map((country) => (
             <li key={country.code} onClick={() => handleSelectCountry(country)}>
               {country.name}
             </li>

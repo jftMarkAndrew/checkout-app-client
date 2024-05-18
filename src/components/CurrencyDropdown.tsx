@@ -1,16 +1,21 @@
-import React, { useState } from "react";
-import { CurrencyCode } from "../interfaces/Currency";
+import { useState } from "react";
 import { useCurrencyContext } from "../context/CurrencyContext";
-import { currencySymbols } from "../consts/currencyCodes";
+import { CurrencyCode, CurrencySymbol } from "../interfaces/Currency";
+
+const currencySymbols: Record<string, CurrencySymbol> = {
+  GBP: CurrencySymbol.GBP,
+  USD: CurrencySymbol.USD,
+  EUR: CurrencySymbol.EUR,
+};
 
 export const CurrencyDropdown: React.FC = () => {
-  const { currency, updateCurrency } = useCurrencyContext();
+  const { currency, currencies, updateCurrency } = useCurrencyContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleCurrencyChange = (currencyCode: CurrencyCode) => {
-    updateCurrency(currencyCode);
+  const handleCurrencyChange = (currencyCode: string) => {
+    updateCurrency(currencyCode as CurrencyCode);
     setIsOpen(false);
   };
 
@@ -21,13 +26,13 @@ export const CurrencyDropdown: React.FC = () => {
       </button>
       {isOpen && (
         <div className="currency-dropdown">
-          {Object.entries(currencySymbols).map(([code, symbol]) => (
+          {currencies.map((currency) => (
             <button
               className="btn-menu"
-              key={code}
-              onClick={() => handleCurrencyChange(code as CurrencyCode)}
+              key={currency.code}
+              onClick={() => handleCurrencyChange(currency.code)}
             >
-              {symbol}
+              {currencySymbols[currency.code]}
             </button>
           ))}
         </div>
