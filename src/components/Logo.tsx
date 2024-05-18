@@ -5,8 +5,10 @@ import { CountryDropdown } from "./CountryDropdown";
 import { AiFillHome } from "react-icons/ai";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { MdDeliveryDining } from "react-icons/md";
+import { useCartContext } from "../context/CartContext";
 
 export const Logo: React.FC = () => {
+  const { totalQuantity } = useCartContext();
   return (
     <div className="logo">
       <div className="logo-container">
@@ -43,9 +45,14 @@ export const Logo: React.FC = () => {
           </button>
         </Link>
         <Link to="/cart">
-          <button className="btn-menu">
-            <MdLocalGroceryStore size="1.25em" title="Cart" />
-          </button>
+          <div className="icon-cart-relative">
+            <button className="btn-menu">
+              <MdLocalGroceryStore size="1.25em" title="Cart" />
+            </button>
+            {totalQuantity > 0 && (
+              <div className="icon-cart-absolute">{totalQuantity}</div>
+            )}
+          </div>
         </Link>
         <Link to="/tracking">
           <button className="btn-menu">
