@@ -14,10 +14,7 @@ export const App: React.FC = () => {
           <Route path="/" element={<Navigate replace to="/store" />} />
           <Route path="/store" element={<Store />} />
           <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/checkout"
-            element={<CheckoutContainer cart={[]} email={""} />}
-          />
+          <Route path="/checkout" element={<CheckoutContainer />} />
           <Route path="/tracking" element={<Track />} />
           <Route path="/tracking/:orderId" element={<Track />} />
         </Route>
