@@ -1,13 +1,17 @@
 import { useState } from "react";
 import validator from "validator";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { useCurrencyContext } from "../context/CurrencyContext";
+import { useCountryContext } from "../context/CountryContext";
 import { currencySymbols, currencyValues } from "../consts/currencyCodes";
 
 export const Cart: React.FC = () => {
   const { cart, addToCart, removeFromCart, clearCart } = useCartContext();
   const { currency } = useCurrencyContext();
+  const { country } = useCountryContext();
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const isValidEmail = (email: string): boolean => {
     return validator.isEmail(email);
@@ -15,7 +19,20 @@ export const Cart: React.FC = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (isValidEmail(email) && event.key === "Enter") {
-      console.log("Enter");
+      handleContinue();
+    }
+  };
+
+  const handleContinue = () => {
+    if (isValidEmail(email)) {
+      const totalAmount = +getTotalPrice();
+      const postData = {
+        amount: totalAmount,
+        currency: currency,
+        country: country.code,
+        email: email,
+      };
+      navigate("/checkout", { state: postData });
     }
   };
 
@@ -69,7 +86,7 @@ export const Cart: React.FC = () => {
           />
           <button
             className="details-email-button"
-            onClick={() => console.log(email, getTotalPrice())}
+            onClick={handleContinue}
             disabled={!isValidEmail(email)}
           >
             Continue
