@@ -49,7 +49,7 @@ export const Cart: React.FC = () => {
     <div className="tracking-container">
       <h1>Cart</h1>
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>Your cart is empty. Do not hesitate to change it right now!</p>
       ) : (
         <>
           <ul>
