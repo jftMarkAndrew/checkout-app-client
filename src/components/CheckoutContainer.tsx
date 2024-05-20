@@ -2,17 +2,36 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CheckoutForm } from "./CheckoutForm";
 import { Loading } from "./Loading";
+import { useCurrencyContext } from "../context/CurrencyContext";
+import { useCountryContext } from "../context/CountryContext";
+import { currencyValues } from "../consts/currencyCodes";
+import { useCartContext } from "../context/CartContext";
 
 export const CheckoutContainer: React.FC = () => {
   const { state } = useLocation();
-  const { amount, currency, country, email } = state;
+  const { email } = state;
   const [sessionToken, setSessionToken] = useState("");
+
+  const { currency } = useCurrencyContext();
+  const { country } = useCountryContext();
+  const { cart } = useCartContext();
+
+  const getTotalPrice = () => {
+    return cart
+      .reduce((total, cartItem) => {
+        const price = cartItem.product.amount * currencyValues[currency];
+        return total + price * cartItem.quantity;
+      }, 0)
+      .toFixed(0);
+  };
+
+  const amount = +getTotalPrice();
 
   useEffect(() => {
     const postData = {
-      amount,
-      currency,
-      country,
+      amount: +getTotalPrice(),
+      currency: currency,
+      country: country.code,
       email,
     };
 
