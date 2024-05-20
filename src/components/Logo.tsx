@@ -19,23 +19,6 @@ export const Logo: React.FC = () => {
           src="/src/assets/icons/fav_icon_logo_unipaas.svg"
           alt=""
         />
-        <div className="logo-title">
-          <h1>
-            <a href="https://www.unipaas.com/" target="_blank">
-              UNIPaaS
-            </a>{" "}
-            Web SDK
-          </h1>
-          <p>
-            Integration Example by{" "}
-            <a
-              href="https://www.linkedin.com/in/mark-andrew-jft/"
-              target="_blank"
-            >
-              Mark Andrew
-            </a>
-          </p>
-        </div>
       </div>
       <div className="toggle">
         <Toggle />

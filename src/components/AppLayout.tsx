@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Logo } from "./Logo";
+import { Footer } from "./Footer";
 
 export const AppLayout: React.FC = () => {
   return (
@@ -10,6 +11,9 @@ export const AppLayout: React.FC = () => {
       <main>
         <Outlet />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
