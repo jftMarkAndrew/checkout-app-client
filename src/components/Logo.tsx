@@ -9,6 +9,7 @@ import { useCartContext } from "../context/CartContext";
 
 export const Logo: React.FC = () => {
   const { totalQuantity } = useCartContext();
+
   return (
     <div className="logo">
       <div className="logo-container">
@@ -44,7 +45,7 @@ export const Logo: React.FC = () => {
             <AiFillHome size="1.25em" title="Store" />
           </button>
         </Link>
-        <Link to="/cart">
+        <a href="/cart">
           <div className="icon-cart-relative">
             <button className="btn-menu">
               <MdLocalGroceryStore size="1.25em" title="Cart" />
@@ -53,7 +54,7 @@ export const Logo: React.FC = () => {
               <div className="icon-cart-absolute">{totalQuantity}</div>
             )}
           </div>
-        </Link>
+        </a>
         <Link to="/tracking">
           <button className="btn-menu">
             <MdDeliveryDining size="1.25em" title="Delivery" />
