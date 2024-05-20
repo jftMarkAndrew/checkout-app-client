@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
 import { CountryDropdown } from "./CountryDropdown";
@@ -9,6 +9,7 @@ import { useCartContext } from "../context/CartContext";
 
 export const Logo: React.FC = () => {
   const { totalQuantity } = useCartContext();
+  const location = useLocation();
 
   return (
     <div className="logo">
@@ -40,26 +41,53 @@ export const Logo: React.FC = () => {
         <Toggle />
       </div>
       <div className="menu-container">
-        <Link to="/store">
-          <button className="btn-menu">
-            <AiFillHome size="1.25em" title="Store" />
-          </button>
-        </Link>
-        <a href="/cart">
-          <div className="icon-cart-relative">
-            <button className="btn-menu">
-              <MdLocalGroceryStore size="1.25em" title="Cart" />
-            </button>
-            {totalQuantity > 0 && (
-              <div className="icon-cart-absolute">{totalQuantity}</div>
-            )}
-          </div>
-        </a>
-        <Link to="/tracking">
-          <button className="btn-menu">
-            <MdDeliveryDining size="1.25em" title="Delivery" />
-          </button>
-        </Link>
+        {location.pathname === "/checkout" ? (
+          <>
+            <a href="/store">
+              <button className="btn-menu">
+                <AiFillHome size="1.25em" title="Store" />
+              </button>
+            </a>
+            <a href="/cart">
+              <div className="icon-cart-relative">
+                <button className="btn-menu">
+                  <MdLocalGroceryStore size="1.25em" title="Cart" />
+                </button>
+                {totalQuantity > 0 && (
+                  <div className="icon-cart-absolute">{totalQuantity}</div>
+                )}
+              </div>
+            </a>
+            <a href="/tracking">
+              <button className="btn-menu">
+                <MdDeliveryDining size="1.25em" title="Delivery" />
+              </button>
+            </a>
+          </>
+        ) : (
+          <>
+            <Link to="/store">
+              <button className="btn-menu">
+                <AiFillHome size="1.25em" title="Store" />
+              </button>
+            </Link>
+            <Link to="/cart">
+              <div className="icon-cart-relative">
+                <button className="btn-menu">
+                  <MdLocalGroceryStore size="1.25em" title="Cart" />
+                </button>
+                {totalQuantity > 0 && (
+                  <div className="icon-cart-absolute">{totalQuantity}</div>
+                )}
+              </div>
+            </Link>
+            <Link to="/tracking">
+              <button className="btn-menu">
+                <MdDeliveryDining size="1.25em" title="Delivery" />
+              </button>
+            </Link>
+          </>
+        )}
         <CurrencyDropdown />
         <CountryDropdown />
       </div>
