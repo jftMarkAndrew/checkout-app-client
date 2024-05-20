@@ -35,11 +35,6 @@ export const CheckoutContainer: React.FC = () => {
       email,
     };
 
-    console.log(postData.amount);
-    console.log(postData.currency);
-    console.log(postData.country);
-    console.log(postData.email);
-
     fetch("http://localhost:3000/checkout/session-token", {
       method: "POST",
       headers: {
