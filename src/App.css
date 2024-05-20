@@ -688,42 +688,63 @@ input[type="checkbox"]:checked + label {
   gap: 2em;
 }
 
-/* item-grid */
+/* item-container */
 
-.item-grid {
-  position: relative;
+.item-container {
   width: calc((100% - 4em) / 3);
-  aspect-ratio: 1/1;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr) repeat(2, 2.5em);
-  grid-template-rows: repeat(6, 1fr) repeat(2, 2.5em);
-}
-
-.item-grid-svg {
-  position: absolute;
-  z-index: 1;
-  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
-  transition: all 0.15s ease;
-
-  &:hover {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
-  }
-
-  &:active {
-    cursor: pointer;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
-  }
-}
-
-.item-grid-bottom-right-corner {
-  grid-row: 8;
-  grid-column: 8;
-  background-color: --lightbg;
   display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 2em;
+  }
+}
+
+.item-title {
+  padding: 0 2em;
+  height: 3em;
+  display: flex;
+  justify-content: space-between;
   align-items: end;
-  justify-content: end;
-  z-index: 1;
+  line-height: 0;
+}
+
+.item-counter {
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  line-height: 0;
+
+  * {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    border: 0;
+    border-radius: 50%;
+    color: var(--background-color);
+    background-color: var(--text-color);
+    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
+    transition: all 0.15s ease;
+
+    &:hover {
+      cursor: pointer;
+      filter: drop-shadow(var(--drop-shadow-mouseover) 0.22em 0.22em 0);
+    }
+
+    &:active {
+      cursor: pointer;
+      filter: drop-shadow(var(--drop-shadow-mouseover) 0.11em 0.11em 0);
+    }
+  }
 }
 
 /* details */
@@ -1064,7 +1085,7 @@ fieldset {
     gap: 1em;
   }
 
-  .item-grid {
+  .item-container {
     width: calc(50% - 0.5em);
   }
 
@@ -1138,7 +1159,7 @@ fieldset {
     grid-template-rows: 10.5em 1em auto 1em 3em;
   }
 
-  .item-grid {
+  .item-container {
     width: 100%;
   }
 

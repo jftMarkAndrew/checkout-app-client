@@ -7,11 +7,16 @@ interface ItemProps {
   item: ItemType;
   quantity: number;
   onAddItem: () => void;
+  onRemoveItem: () => void;
 }
 
-export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
+export const Item: React.FC<ItemProps> = ({
+  item,
+  quantity,
+  onAddItem,
+  onRemoveItem,
+}) => {
   const { currency } = useCurrencyContext();
-  const [hover, setHover] = useState(false);
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
@@ -22,7 +27,7 @@ export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
     setCost(convertPrice());
   }, [currency, item.amount]);
 
-  return (
+  /* return (
     <div
       className="item-grid"
       onMouseEnter={() => setHover(true)}
@@ -88,6 +93,35 @@ export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
       <div className="item-grid-bottom-right-corner text-shadow text-cost">
         {quantity > 0 && <p className="multiplier">x</p>}
         <h1>{quantity > 0 ? quantity : ""}</h1>
+      </div>
+    </div>
+  ); */
+
+  return (
+    <div className="item-container">
+      <div className="item-title">
+        <h1>{item.name}</h1>
+        <h3>
+          {currency ? currencySymbols[currency] : ""}
+          {cost.toFixed(0)}
+        </h3>
+      </div>
+      <div>
+        <img src={item.imageUrl} alt="" />
+        {/* <image
+          href={item.imageUrl}
+          width="100%"
+          height="100%"
+          clipPath="url(#clipShape)"
+          preserveAspectRatio="xMidYMid slice"
+        /> */}
+      </div>
+      <div className="item-counter">
+        <button onClick={onRemoveItem}>−</button>
+        <div>
+          <h3>{quantity > 0 ? quantity : ""}</h3>
+        </div>
+        <button onClick={onAddItem}>+</button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useCartContext } from "../context/CartContext";
 
 export const Store: React.FC = () => {
   const { items } = useItemContext();
-  const { cart, addToCart } = useCartContext();
+  const { cart, addToCart, removeFromCart } = useCartContext();
 
   return (
     <div className="store-container">
@@ -18,6 +18,7 @@ export const Store: React.FC = () => {
             item={item}
             quantity={quantity}
             onAddItem={() => addToCart(item)}
+            onRemoveItem={() => removeFromCart(item.id)}
           />
         );
       })}
