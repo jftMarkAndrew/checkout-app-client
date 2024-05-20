@@ -709,6 +709,10 @@ input[type="checkbox"]:checked + label {
   justify-content: space-between;
   align-items: end;
   line-height: 0;
+
+  h1 {
+    font-size: minmax(fit-content, auto);
+  }
 }
 
 .item-counter {
@@ -743,6 +747,12 @@ input[type="checkbox"]:checked + label {
     &:active {
       cursor: pointer;
       filter: drop-shadow(var(--drop-shadow-mouseover) 0.11em 0.11em 0);
+    }
+
+    &:disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 50%;
     }
   }
 }
