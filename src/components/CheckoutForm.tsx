@@ -7,6 +7,7 @@ import { OrderDetail } from "../interfaces/OrderDetail";
 import { OrderError } from "../interfaces/OrderError";
 import useLocalStorage from "use-local-storage";
 import { useCurrencyContext } from "../context/CurrencyContext";
+import { currencySymbols } from "../consts/currencyCodes";
 
 declare global {
   interface Window {
@@ -202,7 +203,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                   Payment Amount:{" "}
                   <span className="payment-amount">
                     {totalAmount.toFixed(0)}
-                    {currency}
+                    {currency ? currencySymbols[currency] : ""}
                   </span>
                 </h3>
               </div>

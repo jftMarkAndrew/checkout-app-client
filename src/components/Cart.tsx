@@ -73,7 +73,7 @@ export const Cart: React.FC = () => {
           <button onClick={clearCart}>Clear Cart</button>
 
           <h3 className="text-shadow">
-            Total Amount: {currency}
+            Total Amount: {currency ? currencySymbols[currency] : ""}
             {getTotalPrice()}
           </h3>
           <input
