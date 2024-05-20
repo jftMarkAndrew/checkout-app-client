@@ -17,10 +17,10 @@ export const Item: React.FC<ItemProps> = ({ item, quantity, onAddItem }) => {
   useEffect(() => {
     const convertPrice = () => {
       const conversionRate = currencyValues[currency];
-      return item.defaultAmount * conversionRate;
+      return item.amount * conversionRate;
     };
     setCost(convertPrice());
-  }, [currency, item.defaultAmount]);
+  }, [currency, item.amount]);
 
   return (
     <div

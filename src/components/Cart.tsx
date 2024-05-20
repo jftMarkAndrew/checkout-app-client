@@ -39,7 +39,7 @@ export const Cart: React.FC = () => {
   const getTotalPrice = () => {
     return cart
       .reduce((total, cartItem) => {
-        const price = cartItem.product.defaultAmount * currencyValues[currency];
+        const price = cartItem.product.amount * currencyValues[currency];
         return total + price * cartItem.quantity;
       }, 0)
       .toFixed(0);
@@ -58,9 +58,9 @@ export const Cart: React.FC = () => {
                 <span>
                   {cartItem.product.name} -{" "}
                   {currency ? currencySymbols[currency] : ""}
-                  {(
-                    cartItem.product.defaultAmount * currencyValues[currency]
-                  ).toFixed(0)}
+                  {(cartItem.product.amount * currencyValues[currency]).toFixed(
+                    0
+                  )}
                 </span>
                 <span>Quantity: {cartItem.quantity}</span>
                 <button onClick={() => removeFromCart(cartItem.product.id)}>

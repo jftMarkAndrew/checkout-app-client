@@ -4,7 +4,7 @@ export interface Item {
   description?: string;
   vendorId?: string;
   quantity?: number;
-  defaultAmount: number;
+  amount: number;
   fundingAmount?: number;
   platformFee?: number;
   imageUrl?: string;
