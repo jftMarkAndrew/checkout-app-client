@@ -7,7 +7,7 @@ import { useCountryContext } from "../context/CountryContext";
 import { currencySymbols, currencyValues } from "../consts/currencyCodes";
 
 export const Cart: React.FC = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useCartContext();
+  const { cart, addToCart, removeFromCart } = useCartContext();
   const { currency } = useCurrencyContext();
   const { country } = useCountryContext();
   const [email, setEmail] = useState("");
@@ -52,25 +52,34 @@ export const Cart: React.FC = () => {
         <p>Your cart is empty. Do not hesitate to change it right now!</p>
       ) : (
         <>
-          <ul>
-            {cart.map((cartItem) => (
-              <li key={cartItem.product.id}>
-                <span>
-                  {cartItem.product.name} -{" "}
-                  {currency ? currencySymbols[currency] : ""}
-                  {(cartItem.product.amount * currencyValues[currency]).toFixed(
-                    0
-                  )}
-                </span>
-                <span>Quantity: {cartItem.quantity}</span>
-                <button onClick={() => removeFromCart(cartItem.product.id)}>
-                  −
-                </button>
-                <button onClick={() => addToCart(cartItem.product)}>+</button>
-              </li>
-            ))}
-          </ul>
-          <button onClick={clearCart}>Clear Cart</button>
+          {cart.map((cartItem) => (
+            <div className="cart-container">
+              <div className="cart-content" key={cartItem.product.id}>
+                <div>
+                  <img
+                    src={cartItem.product.imageUrl}
+                    alt={cartItem.product.name}
+                  />
+                </div>
+                <div className="item-title cart-item">
+                  <h3>{cartItem.product.name}</h3>
+                  <h3>
+                    {currency ? currencySymbols[currency] : ""}
+                    {(
+                      cartItem.product.amount * currencyValues[currency]
+                    ).toFixed(0)}
+                  </h3>
+                </div>
+                <div className="item-counter">
+                  <button onClick={() => removeFromCart(cartItem.product.id)}>
+                    −
+                  </button>
+                  <h3>{cartItem.quantity}</h3>
+                  <button onClick={() => addToCart(cartItem.product)}>+</button>
+                </div>
+              </div>
+            </div>
+          ))}
 
           <h3 className="text-shadow">
             Total Amount: {currency ? currencySymbols[currency] : ""}
