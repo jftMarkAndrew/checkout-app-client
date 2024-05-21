@@ -1,0 +1,120 @@
+.checkout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+}
+
+.checkout-content {
+  flex: 1;
+  max-width: 27em;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout-design-card {
+  width: 27em;
+  aspect-ratio: 1.585 / 1;
+  border: 1px var(--drop-shadow-mouseover) solid;
+  background-color: var(--text-color) 60;
+  box-shadow: var(--drop-shadow-mouseover) 0.5em 0.5em 0;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-unipaas {
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
+}
+
+.btn-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2em;
+  gap: 1em;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.copy-to-clipboard {
+  padding: 0 0.5em;
+  cursor: pointer;
+  animation: all 0.15s ease;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
+}
+
+.description-container {
+  padding-top: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.error-container {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+.btn-pay {
+  cursor: pointer;
+  width: 12em;
+  height: 3em;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
+  transition: all 0.15s ease;
+}
+
+.btn-pay:hover {
+  width: 12em;
+  height: 3em;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
+}
+
+.btn-pay:active {
+  width: 12em;
+  height: 3em;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.16em 0.16em 0);
+}
+
+.btn-disabled {
+  cursor: default;
+  width: 12em;
+  height: 3em;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
+  transition: all 0.15s ease;
+}
+
+@media screen and (max-width: 960px) {
+  .checkout-container {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .checkout-design-card {
+    display: none;
+  }
+}

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import "../styles/processing.css";
 import { useEffect, useRef, useState } from "react";
 import { cardConfig, btnConfig } from "../consts/sdkConfig";
 import { Result } from "./Result";

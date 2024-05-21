@@ -1,3 +1,4 @@
+import "../styles/checkout.css";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CheckoutForm } from "./CheckoutForm";
