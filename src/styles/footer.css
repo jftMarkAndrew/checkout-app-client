@@ -24,6 +24,19 @@
     font-size: minmax(fit-content, 3vw);
     line-height: auto;
   }
+
+  a,
+  a:visited {
+    color: #f4f3ef;
+  }
+
+  a:hover {
+    color: #da3703;
+  }
+
+  a:active {
+    color: #da370395;
+  }
 }
 
 @media screen and (max-width: 768px) {
