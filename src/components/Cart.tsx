@@ -1,3 +1,4 @@
+import "../styles/cart.css";
 import { useState } from "react";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
