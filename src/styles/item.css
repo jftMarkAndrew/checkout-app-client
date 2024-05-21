@@ -74,11 +74,30 @@
 @media screen and (max-width: 480px) {
   .item-container {
     width: 100%;
-  }
 
+    img {
+      border-radius: 1em;
+    }
+  }
   .item-title {
     padding: 0;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .item-title {
+    padding: 0;
+
+    h1 {
+      font-size: 10vw;
+    }
+
+    h3 {
+      font-size: 7.5vw;
+    }
+  }
+
+  .item-counter {
+    gap: 0.125em;
   }
 }
