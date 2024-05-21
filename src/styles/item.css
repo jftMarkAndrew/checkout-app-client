@@ -86,14 +86,14 @@
   }
 
   .item-title {
-    padding: 0;
+    gap: 1em;
 
     h1 {
-      font-size: 10vw;
+      font-size: 7.5vw;
     }
 
     h3 {
-      font-size: 7.5vw;
+      font-size: 6vw;
     }
   }
 
