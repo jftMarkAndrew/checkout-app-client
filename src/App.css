@@ -92,13 +92,6 @@ footer {
 
   .content-grid {
     min-height: calc(100vh - 1em);
-    grid-template-rows: 13.25em 1em auto 1em 4.5em;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .content-grid {
-    grid-template-columns: [full-width];
-    grid-template-rows: 10.5em 1em auto 1em 3em;
+    display: block;
   }
 }
