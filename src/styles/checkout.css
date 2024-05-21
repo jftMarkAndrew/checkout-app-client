@@ -117,4 +117,12 @@
   .checkout-design-card {
     display: none;
   }
+
+  .btn-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    gap: 0;
+  }
 }
