@@ -63,13 +63,17 @@ export const Cart: React.FC = () => {
                   />
                 </div>
                 <div className="item-title cart-item">
-                  <h3>{cartItem.product.name}</h3>
-                  <h3>
-                    {currency ? currencySymbols[currency] : ""}
-                    {(
-                      cartItem.product.amount * currencyValues[currency]
-                    ).toFixed(0)}
-                  </h3>
+                  <div>
+                    <h3>{cartItem.product.name}</h3>
+                  </div>
+                  <div>
+                    <h3>
+                      {currency ? currencySymbols[currency] : ""}
+                      {(
+                        cartItem.product.amount * currencyValues[currency]
+                      ).toFixed(0)}
+                    </h3>
+                  </div>
                 </div>
                 <div className="item-counter">
                   <button onClick={() => removeFromCart(cartItem.product.id)}>
