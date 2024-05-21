@@ -9,6 +9,7 @@ import { OrderError } from "../interfaces/OrderError";
 import useLocalStorage from "use-local-storage";
 import { useCurrencyContext } from "../context/CurrencyContext";
 import { currencySymbols } from "../consts/currencyCodes";
+import { useCartContext } from "../context/CartContext";
 
 declare global {
   interface Window {
@@ -28,6 +29,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   email,
 }) => {
   const { currency } = useCurrencyContext();
+  const { clearCart } = useCartContext();
   const unipaasRef = useRef<any>(null);
   const isInitialized = useRef(false);
   const [checkoutData, setCheckoutData] = useState<OrderDetail | null>(null);
@@ -66,6 +68,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
     setCheckoutData(data);
     setOrderId(data.authorizationId);
     setSuccessfulPayment(true);
+    clearCart();
   };
 
   const handleError = (error: OrderError) => {
