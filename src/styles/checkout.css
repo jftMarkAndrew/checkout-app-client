@@ -110,6 +110,7 @@
 
 @media screen and (max-width: 960px) {
   .checkout-container {
+    height: 100%;
     flex-direction: column;
     gap: 0.5em;
   }

@@ -89,9 +89,18 @@ footer {
   body {
     padding: 0.25em;
   }
+}
 
+@media screen and (max-width: 480px) {
   .content-grid {
     min-height: calc(100vh - 1em);
-    display: block;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  footer {
+
   }
 }

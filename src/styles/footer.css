@@ -41,7 +41,6 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    margin-top: 1em;
     height: 4.5em;
   }
 
@@ -54,6 +53,7 @@
 
 @media screen and (max-width: 480px) {
   .footer {
+    margin-top: 1em;
     height: 3em;
   }
 
