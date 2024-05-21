@@ -1,4 +1,6 @@
 import "./App.css";
+import "./styles/sdk.css";
+import "./styles/fonts.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
 import { Store } from "./components/Store";
