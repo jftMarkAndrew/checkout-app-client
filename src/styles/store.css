@@ -1,0 +1,15 @@
+.store-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .store-container {
+    gap: 1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}

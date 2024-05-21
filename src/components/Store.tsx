@@ -1,3 +1,4 @@
+import "../styles/store.css";
 import { Item } from "../components/Item";
 import { useItemContext } from "../context/ItemContext";
 import { useCartContext } from "../context/CartContext";
