@@ -1,3 +1,4 @@
+import "../styles/item.css";
 import { useEffect, useState } from "react";
 import { Item as ItemType } from "../interfaces/Item";
 import { useCurrencyContext } from "../context/CurrencyContext";
