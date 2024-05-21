@@ -1,0 +1,30 @@
+.tracking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.track-order-input {
+  margin-bottom: 0.5em;
+  padding: 0 2em;
+  width: 13.5em;
+  height: calc(3em - 2px);
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+  filter: drop-shadow(var(--drop-shadow-mouseover) 0.5em 0.5em 0);
+}
+
+.track-table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+
+  td {
+    width: 15em;
+  }
+
+  th {
+    width: 21em;
+  }
+}

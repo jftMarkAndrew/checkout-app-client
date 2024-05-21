@@ -1,3 +1,4 @@
+import "../styles/tracking.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { SetStateAction, useEffect, useState } from "react";
 import { OrderDetail } from "../interfaces/OrderDetail";
