@@ -177,6 +177,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .logo {
+    background-position-x: -21em;
+  }
+
   .btn-menu {
     width: 13.33vw;
     height: 13.33vw;
@@ -204,10 +208,7 @@
   }
 
   .logo-unipaas {
-    top: 1.75em;
-    width: 4em;
-    height: 4.33em;
-    filter: drop-shadow(var(--drop-shadow-mouseover) 0.33em 0.33em 0);
+    display: none;
   }
 
   .icon-cart-absolute {
