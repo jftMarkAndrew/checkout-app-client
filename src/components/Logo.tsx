@@ -1,3 +1,4 @@
+import "../styles/logo.css";
 import { Link, useLocation } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { CurrencyDropdown } from "./CurrencyDropdown";
